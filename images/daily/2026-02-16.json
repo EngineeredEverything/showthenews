@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-02-16T00:00:33.247Z",
+  "date": "2026-02-16",
+  "imageUrl": "/images/daily/2026-02-16.png",
+  "events": [
+    {
+      "title": "FBI analysing recovered glove that appears to match those worn in Guthrie suspect video",
+      "url": "https://www.bbc.com/news/articles/c5yrv2g16e2o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "score": 4,
+      "hotspot": {
+        "x": 15,
+        "y": 50,
+        "width": 50,
+        "height": 40,
+        "zone": "foreground"
+      }
+    },
+    {
+      "title": "Gaza author and analyst Jehad Abusalim on Trump’s ‘Board of Peace’",
+      "url": "https://www.aljazeera.com/video/upfront/2026/2/15/gaza-author-and-analyst-jehad-abusalim-on-trumps-board-of-peace?traffic_source=rss",
+      "source": "Al Jazeera",
+      "score": 4,
+      "hotspot": {
+        "x": 25,
+        "y": 20,
+        "width": 50,
+        "height": 35,
+        "zone": "midground"
+      }
+    },
+    {
+      "title": "Trump's border czar says a 'small' security force will stay in Minnesota",
+      "url": "https://www.npr.org/2026/02/15/nx-s1-5715151/minnesota-immigration-homan-security-force-stay",
+      "source": "NPR",
+      "score": 3,
+      "hotspot": {
+        "x": 50,
+        "y": 15,
+        "width": 45,
+        "height": 30,
+        "zone": "background"
+      }
+    }
+  ],
+  "prompt": "Professional editorial illustration of a unified symbolic scene representing today's major world news.\nAll elements exist in ONE cohesive world with dramatic lighting and atmospheric mood.\n\nIn the foreground (zone):\n- FBI analysing recovered glove that appears to match those worn in Guthrie suspect video\n- Visual prominence: important\n- Image reference: \n- Sources: BBC, NPR, CBS News, PBS NewsHour\n\nIn the midground (zone):\n- Gaza author and analyst Jehad Abusalim on Trump’s ‘Board of Peace’\n- Visual prominence: important\n- Image reference: \n- Sources: Al Jazeera, The Hill, The Independent, DW (Germany)\n\nIn the background (zone):\n- Trump's border czar says a 'small' security force will stay in Minnesota\n- Visual prominence: important\n- Image reference: \n- Sources: NPR, The Independent, PBS NewsHour\n\nStyle: Cinematic editorial photojournalism, symbolic but specific and recognizable,\nprofessional news illustration, designed to be understood from 15 feet away, no text labels.\nUnified by: dramatic lighting, coherent perspective, single cohesive atmosphere."
+}

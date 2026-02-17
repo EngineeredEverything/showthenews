@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShowTheNews - News Wall</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: #030712;
+      color: white;
+      min-height: 100vh;
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 2rem 1rem; }
+    .news-event {
+      transition: all 0.2s ease;
+      background: rgba(17, 24, 39, 0.5);
+      border-left: 4px solid #374151;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .news-event:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .news-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .news-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-white min-h-screen">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="mb-8 border-b border-gray-800 pb-6">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            📰 ShowTheNews
+          </h1>
+          <p class="text-gray-400 mt-2">Real-time news intelligence • Publisher-friendly compression</p>
+        </div>
+        <div class="text-right">
+          <div class="text-sm text-gray-500" id="lastUpdate">Loading...</div>
+          <div class="text-xs text-gray-600 mt-1">
+            <span id="storyCount">—</span> stories • <span id="eventCount">—</span> events
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- News Events Grid -->
+    <div id="newsGrid" class="news-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Loading state -->
+      <div class="col-span-full text-center py-12 text-gray-500">
+        Loading news...
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let newsData = null;
+
+    function timeAgo(dateString) {
+      const now = new Date();
+      const then = new Date(dateString);
+      const seconds = Math.floor((now - then) / 1000);
+      
+      if (seconds < 60) return 'just now';
+      if (seconds < 3600) return Math.floor(seconds / 60) + 'm ago';
+      if (seconds < 86400) return Math.floor(seconds / 3600) + 'h ago';
+      return Math.floor(seconds / 86400) + 'd ago';
+    }
+
+    function getPriorityClass(score) {
+      if (score >= 3) return 'border-red-500 bg-red-500/10';
+      if (score >= 2) return 'border-orange-500 bg-orange-500/10';
+      return 'border-gray-700 bg-gray-900/50';
+    }
+
+    function getPriorityLabel(score) {
+      if (score >= 3) return '<span class="text-red-400 text-xs font-semibold">HIGH PRIORITY</span>';
+      if (score >= 2) return '<span class="text-orange-400 text-xs font-semibold">MEDIUM</span>';
+      return '';
+    }
+
+    function renderNews() {
+      console.log('renderNews called', newsData);
+      if (!newsData || !newsData.events) {
+        console.log('No newsData or events', newsData);
+        return;
+      }
+
+      const grid = document.getElementById('newsGrid');
+      grid.innerHTML = newsData.events.map(event => `
+        <div class="news-event border-l-4 ${getPriorityClass(event.score)} rounded-lg p-4 backdrop-blur-sm">
+          <div class="flex justify-between items-start mb-2">
+            <div class="flex-1">
+              ${getPriorityLabel(event.score)}
+              <h3 class="text-white font-semibold text-lg leading-tight mt-1">
+                ${event.title}
+              </h3>
+            </div>
+            <span class="text-xs text-gray-500 ml-2 whitespace-nowrap">
+              ${timeAgo(event.pubDate)}
+            </span>
+          </div>
+          
+          <p class="text-gray-400 text-sm mb-3 line-clamp-2">
+            ${event.digest}
+          </p>
+          
+          <div class="flex flex-wrap gap-2">
+            ${event.sources.map((src, i) => `
+              <a href="${src.url}" target="_blank" 
+                 class="inline-flex items-center px-2 py-1 rounded text-xs bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-colors">
+                ${src.name}
+                ${i === 0 ? '' : '<span class="ml-1 text-blue-400">+</span>'}
+              </a>
+            `).join('')}
+            ${event.sources.length > 1 ? `
+              <span class="text-xs text-gray-500 px-2 py-1">
+                ${event.sources.length} sources
+              </span>
+            ` : ''}
+          </div>
+        </div>
+      `).join('');
+
+      // Update stats
+      document.getElementById('storyCount').textContent = newsData.stories.length;
+      document.getElementById('eventCount').textContent = newsData.events.length;
+      document.getElementById('lastUpdate').textContent = 
+        'Updated ' + timeAgo(newsData.lastUpdate);
+    }
+
+    async function fetchNews() {
+      try {
+        console.log('Fetching news from ./api/news...');
+        const response = await fetch('./api/news');
+        console.log('Response status:', response.status);
+        newsData = await response.json();
+        console.log('Received data:', newsData);
+        renderNews();
+      } catch (err) {
+        console.error('Error fetching news:', err);
+        document.getElementById('newsGrid').innerHTML = 
+          '<div class="col-span-full text-center py-12 text-red-400">Error loading news: ' + err.message + '<br>Please check browser console or refresh.</div>';
+      }
+    }
+
+    // Initial load and auto-refresh
+    fetchNews();
+    setInterval(fetchNews, 5 * 60 * 1000); // Every 5 minutes
+    setInterval(renderNews, 30 * 1000); // Update time labels every 30 seconds
+  </script>
+</body>
+</html>

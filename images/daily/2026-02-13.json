@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-02-13T00:00:59.088Z",
+  "date": "2026-02-13",
+  "imageUrl": "/images/daily/2026-02-13.png",
+  "events": [
+    {
+      "title": "Trump revokes landmark ruling that greenhouse gases endanger public health",
+      "url": "https://www.bbc.com/news/articles/cn0zdd7yl4vo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "score": 4,
+      "referenceImage": "https://ichef.bbci.co.uk/news/1024/branded_news/eb9f/live/604a8500-0848-11f1-b5e2-dd58fc65f0f6.jpg",
+      "hotspot": {
+        "x": 15,
+        "y": 50,
+        "width": 50,
+        "height": 40,
+        "zone": "foreground"
+      }
+    },
+    {
+      "title": "Canada mass shooting suspect had police visits over mental health struggles",
+      "url": "https://www.bbc.com/news/articles/clyz2x4yzqgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "score": 3,
+      "referenceImage": "https://ichef.bbci.co.uk/news/1024/branded_news/6099/live/ddcf9510-082f-11f1-b7e1-afb6d0884c18.jpg",
+      "hotspot": {
+        "x": 25,
+        "y": 20,
+        "width": 50,
+        "height": 35,
+        "zone": "midground"
+      }
+    },
+    {
+      "title": "Australia politics live: Angus Taylor becomes new Liberal leader as Sussan Ley deposed after nine months; Jane Hume wins deputy role",
+      "url": "https://www.theguardian.com/australia-news/live/2026/feb/13/australia-politics-live-liberals-leadership-spill-vote-angus-taylor-sussan-ley-libspill-anthony-albanese-indigenous-apology-anniversary-ntwnfb",
+      "source": "The Guardian",
+      "score": 2,
+      "referenceImage": "https://i.guim.co.uk/img/media/4d5bce9755379c28b3b8bfe60d96a024f03d08e7/415_0_4133_3308/master/4133.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctbGl2ZS5wbmc&enable=upscale&s=76d8a2bc4cdad3a96bd9856608ff2a1e",
+      "hotspot": {
+        "x": 50,
+        "y": 15,
+        "width": 45,
+        "height": 30,
+        "zone": "background"
+      }
+    }
+  ],
+  "prompt": "Professional editorial illustration of a unified symbolic scene representing today's major world news.\nAll elements exist in ONE cohesive world with dramatic lighting and atmospheric mood.\n\nIn the foreground (zone):\n- Trump revokes landmark ruling that greenhouse gases endanger public health\n- Visual prominence: important\n- Image reference: (reference: https://ichef.bbci.co.uk/news/1024/branded_news/eb9f/live/604a8500-0848-11f1-b5e2-dd58fc65f0f6.jpg)\n- Sources: BBC, ABC News, The Hill, CBS News\n\nIn the midground (zone):\n- Canada mass shooting suspect had police visits over mental health struggles\n- Visual prominence: important\n- Image reference: (reference: https://ichef.bbci.co.uk/news/1024/branded_news/6099/live/ddcf9510-082f-11f1-b7e1-afb6d0884c18.jpg)\n- Sources: BBC, The Guardian, Washington Post\n\nIn the background (zone):\n- Australia politics live: Angus Taylor becomes new Liberal leader as Sussan Ley deposed after nine months; Jane Hume wins deputy role\n- Visual prominence: important\n- Image reference: (reference: https://i.guim.co.uk/img/media/4d5bce9755379c28b3b8bfe60d96a024f03d08e7/415_0_4133_3308/master/4133.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctbGl2ZS5wbmc&enable=upscale&s=76d8a2bc4cdad3a96bd9856608ff2a1e)\n- Sources: The Guardian, The Guardian\n\nStyle: Cinematic editorial photojournalism, symbolic but specific and recognizable,\nprofessional news illustration, designed to be understood from 15 feet away, no text labels.\nUnified by: dramatic lighting, coherent perspective, single cohesive atmosphere."
+}

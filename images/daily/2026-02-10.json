@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-02-10T07:27:57.828Z",
+  "date": "2026-02-10",
+  "imageUrl": "/images/daily/2026-02-10.png",
+  "events": [
+    {
+      "title": "Trump threatens to block opening of US-Canada bridge",
+      "url": "https://www.bbc.com/news/articles/cpw052pkvl0o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "score": 4,
+      "referenceImage": "https://ichef.bbci.co.uk/news/1024/branded_news/cc88/live/535a3030-0617-11f1-b653-2f014e2e8e4d.jpg",
+      "hotspot": {
+        "x": 5,
+        "y": 35,
+        "width": 30,
+        "height": 50,
+        "zone": "left"
+      }
+    },
+    {
+      "title": "WATCH:  Bad Bunny brings Puerto Rico to Super Bowl halftime show",
+      "url": "https://abcnews.go.com/GMA/Culture/video/bad-bunny-brings-puerto-rico-super-bowl-halftime-129987802",
+      "source": "ABC News",
+      "score": 3,
+      "referenceImage": "https://i.abcnewsfe.com/a/71198194-45ab-48f9-bb35-d711e344c926/260209_gma_reeve_badbunny_0731_hpMain_16x9.jpg?w=992",
+      "hotspot": {
+        "x": 30,
+        "y": 25,
+        "width": 40,
+        "height": 60,
+        "zone": "center"
+      }
+    },
+    {
+      "title": "'We are just parents, not a couple': How to reconnect after having kids",
+      "url": "https://www.bbc.com/news/articles/ce3kvw4q29wo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "score": 2,
+      "referenceImage": "https://ichef.bbci.co.uk/news/1024/branded_news/dc6e/live/74c9c400-05dc-11f1-82f0-b5a11f53e1d7.jpg",
+      "hotspot": {
+        "x": 70,
+        "y": 35,
+        "width": 28,
+        "height": 50,
+        "zone": "right"
+      }
+    }
+  ],
+  "prompt": "Professional editorial news illustration showing THREE DISTINCT, CLEARLY VISIBLE news stories:\n\nLEFT SIDE (30% of image):\n- Donald Trump in recognizable portrait style, wearing red tie and dark suit\n- Pointing or gesturing at a suspension bridge (Ambassador Bridge style between US and Canada)\n- American and Canadian flags visible\n- Serious, confrontational expression\n- Bridge in background with border crossing signs\n\nCENTER (40% of image):  \n- Bad Bunny (Puerto Rican musician) performing on a massive outdoor stadium stage\n- Wearing distinctive colorful outfit\n- Large Puerto Rican flag prominently displayed behind him\n- Stadium crowd and lights visible\n- Super Bowl halftime show energy with pyrotechnics\n- Microphone in hand, mid-performance pose\n\nRIGHT SIDE (30% of image):\n- Couple sitting apart on opposite ends of a couch in a modern living room\n- Young children's toys scattered on floor between them\n- Both parents looking distant/disconnected but not angry\n- Soft domestic lighting\n- Family photos on wall in background\n- Emotional distance visually represented by physical space\n- Warm but melancholy color palette\n\nCRITICAL REQUIREMENTS:\n- All three scenes must be CLEARLY DISTINGUISHABLE\n- Each subject must be RECOGNIZABLE (Trump's face, Bad Bunny on stage, damaged building)\n- NO generic imagery - specific details for each story\n- Unified lighting (dramatic sunset/dusk) but DISTINCT spatial zones\n- Professional editorial illustration style\n- Cinematic composition\n- NO TEXT LABELS\n\nStyle: High-quality editorial photojournalism illustration, symbolic but SPECIFIC and RECOGNIZABLE, designed to be understood from 15 feet away, dramatic lighting, coherent perspective."
+}

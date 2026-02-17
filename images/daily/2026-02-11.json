@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-02-11T00:00:53.244Z",
+  "date": "2026-02-11",
+  "imageUrl": "/images/daily/2026-02-11.png",
+  "events": [
+    {
+      "title": "Palestine urges ‘powerful partners’ to stop Israel’s West Bank ‘annexation’",
+      "url": "https://www.aljazeera.com/news/2026/2/10/palestine-urges-powerful-partner-to-stop-west-bank-annexation-by-israel?traffic_source=rss",
+      "source": "Al Jazeera",
+      "score": 3,
+      "referenceImage": "https://www.aljazeera.com/wp-content/uploads/2026/02/AP26032509053472-1770760313.jpg?resize=1200%2C675",
+      "hotspot": {
+        "x": 15,
+        "y": 50,
+        "width": 50,
+        "height": 40,
+        "zone": "foreground"
+      }
+    },
+    {
+      "title": "Why is a moderate Democrat’s primary loss being called an AIPAC backfire?",
+      "url": "https://www.aljazeera.com/news/2026/2/10/why-is-a-moderate-democrats-primary-loss-being-called-an-aipac-backfire?traffic_source=rss",
+      "source": "Al Jazeera",
+      "score": 2,
+      "referenceImage": "https://www.aljazeera.com/wp-content/uploads/2026/02/AP26035707698329-1-1770754222.jpg?resize=1920%2C1440",
+      "hotspot": {
+        "x": 25,
+        "y": 20,
+        "width": 50,
+        "height": 35,
+        "zone": "midground"
+      }
+    },
+    {
+      "title": "WATCH:  Ghislaine Maxwell pleads the Fifth in closed-door House Oversight deposition",
+      "url": "https://abcnews.go.com/Politics/video/ghislaine-maxwell-pleads-closed-door-house-oversight-deposition-130035719",
+      "source": "ABC News",
+      "score": 1,
+      "referenceImage": "https://i.abcnewsfe.com/a/d4756b22-44fc-4745-b4a1-4c04b19f416d/260210_abc_social_scott_on_maxwell_hpMain_9x16.jpg?w=992",
+      "hotspot": {
+        "x": 50,
+        "y": 15,
+        "width": 45,
+        "height": 30,
+        "zone": "background"
+      }
+    }
+  ],
+  "prompt": "Professional editorial illustration of a unified symbolic scene representing today's major world news.\nAll elements exist in ONE cohesive world with dramatic lighting and atmospheric mood.\n\nIn the foreground (zone):\n- Palestine urges ‘powerful partners’ to stop Israel’s West Bank ‘annexation’\n- Visual prominence: important\n- Image reference: (reference: https://www.aljazeera.com/wp-content/uploads/2026/02/AP26032509053472-1770760313.jpg?resize=1200%2C675)\n- Sources: Al Jazeera, Al Jazeera, Al Jazeera\n\nIn the midground (zone):\n- Why is a moderate Democrat’s primary loss being called an AIPAC backfire?\n- Visual prominence: important\n- Image reference: (reference: https://www.aljazeera.com/wp-content/uploads/2026/02/AP26035707698329-1-1770754222.jpg?resize=1920%2C1440)\n- Sources: Al Jazeera, Al Jazeera\n\nIn the background (zone):\n- WATCH:  Ghislaine Maxwell pleads the Fifth in closed-door House Oversight deposition\n- Visual prominence: important\n- Image reference: (reference: https://i.abcnewsfe.com/a/d4756b22-44fc-4745-b4a1-4c04b19f416d/260210_abc_social_scott_on_maxwell_hpMain_9x16.jpg?w=992)\n- Sources: ABC News\n\nStyle: Cinematic editorial photojournalism, symbolic but specific and recognizable,\nprofessional news illustration, designed to be understood from 15 feet away, no text labels.\nUnified by: dramatic lighting, coherent perspective, single cohesive atmosphere."
+}

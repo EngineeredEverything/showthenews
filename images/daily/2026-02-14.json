@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-02-14T00:00:32.790Z",
+  "date": "2026-02-14",
+  "imageUrl": "/images/daily/2026-02-14.png",
+  "events": [
+    {
+      "title": "Trump says US will send second aircraft carrier to Middle East ‘very soon’",
+      "url": "https://www.aljazeera.com/news/2026/2/13/trump-confirms-second-aircraft-carrier-headed-to-middle-east-very?traffic_source=rss",
+      "source": "Al Jazeera",
+      "score": 6,
+      "hotspot": {
+        "x": 15,
+        "y": 50,
+        "width": 50,
+        "height": 40,
+        "zone": "foreground"
+      }
+    },
+    {
+      "title": "Two Britons among three dead in French Alps avalanche",
+      "url": "https://www.bbc.com/news/articles/cd03elmng7do?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "score": 3,
+      "hotspot": {
+        "x": 25,
+        "y": 20,
+        "width": 50,
+        "height": 35,
+        "zone": "midground"
+      }
+    },
+    {
+      "title": "Farm bill pesticide measure sure to anger MAHA",
+      "url": "https://thehill.com/homenews/5738313-farm-bill-pesticide-measure-sure-to-anger-maha/",
+      "source": "The Hill",
+      "score": 2,
+      "hotspot": {
+        "x": 50,
+        "y": 15,
+        "width": 45,
+        "height": 30,
+        "zone": "background"
+      }
+    }
+  ],
+  "prompt": "Professional editorial illustration of a unified symbolic scene representing today's major world news.\nAll elements exist in ONE cohesive world with dramatic lighting and atmospheric mood.\n\nIn the foreground (zone):\n- Trump says US will send second aircraft carrier to Middle East ‘very soon’\n- Visual prominence: important\n- Image reference: \n- Sources: Al Jazeera, Al Jazeera, Washington Post, CBS News, France24, DW (Germany)\n\nIn the midground (zone):\n- Two Britons among three dead in French Alps avalanche\n- Visual prominence: important\n- Image reference: \n- Sources: BBC, The Independent, DW (Germany)\n\nIn the background (zone):\n- Farm bill pesticide measure sure to anger MAHA\n- Visual prominence: important\n- Image reference: \n- Sources: The Hill, The Hill\n\nStyle: Cinematic editorial photojournalism, symbolic but specific and recognizable,\nprofessional news illustration, designed to be understood from 15 feet away, no text labels.\nUnified by: dramatic lighting, coherent perspective, single cohesive atmosphere."
+}

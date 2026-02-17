@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShowTheNews - Visual News Intelligence</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: #030712;
+      color: white;
+      min-height: 100vh;
+    }
+    
+    .image-container {
+      position: relative;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .news-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .hotspot {
+      position: absolute;
+      border: 3px solid transparent;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    
+    .hotspot:hover {
+      border-color: rgba(96, 165, 250, 0.8);
+      background: rgba(96, 165, 250, 0.15);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+    }
+    
+    .tooltip {
+      position: absolute;
+      bottom: calc(100% + 15px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.95);
+      color: white;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      max-width: 400px;
+      min-width: 200px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+    
+    .tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-top-color: rgba(0, 0, 0, 0.95);
+    }
+    
+    .hotspot:hover .tooltip {
+      opacity: 1;
+      bottom: calc(100% + 10px);
+    }
+    
+    .headline {
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    
+    .source-badge {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.25);
+      color: #60a5fa;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    
+    .click-hint {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 6px;
+      font-style: italic;
+    }
+    
+    .loading-state {
+      text-align: center;
+      padding: 120px 20px;
+      color: #9ca3af;
+    }
+    
+    .spinner {
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top-color: #60a5fa;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 20px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-white">
+  <div class="container mx-auto px-4 py-8 max-w-7xl">
+    <!-- Header -->
+    <div class="mb-8 border-b border-gray-800 pb-6">
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            📰 ShowTheNews
+          </h1>
+          <p class="text-gray-400 mt-2">Visual news intelligence • Hover to explore • Click to read</p>
+        </div>
+        <div class="text-right">
+          <div class="text-sm text-gray-500" id="lastUpdate">Loading...</div>
+          <div class="text-xs text-gray-600 mt-1">
+            <span id="eventCount">—</span> stories visualized
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <div>Generating today's visual news summary...</div>
+      </div>
+    </div>
+    
+    <!-- Instructions -->
+    <div class="text-center mt-8 text-gray-500 text-sm" id="instructions" style="display: none;">
+      <strong class="text-blue-400">Hover</strong> over different regions to see headlines • 
+      <strong class="text-blue-400">Click</strong> to read the full article
+    </div>
+  </div>
+
+  <script>
+    let dailyImageData = null;
+
+    async function loadDailyImage() {
+      try {
+        console.log('Fetching daily image...');
+        const response = await fetch('./api/daily-image');
+        const data = await response.json();
+        
+        if (data.error) {
+          console.log('No daily image yet, showing fallback');
+          showFallback();
+          return;
+        }
+        
+        dailyImageData = data;
+        renderDailyImage();
+        document.getElementById('instructions').style.display = 'block';
+        
+      } catch (err) {
+        console.error('Error loading daily image:', err);
+        showFallback();
+      }
+    }
+
+    function renderDailyImage() {
+      const mainContent = document.getElementById('mainContent');
+      
+      const html = `
+        <div class="image-container fade-in" style="max-width: 1792px; margin: 0 auto;">
+          <img src="${dailyImageData.imageUrl}" alt="Today's News" class="news-image" id="newsImage">
+          ${dailyImageData.events.map(event => `
+            <div class="hotspot" 
+                 style="left: ${event.hotspot.x}%; top: ${event.hotspot.y}%; width: ${event.hotspot.width}%; height: ${event.hotspot.height}%;"
+                 data-url="${event.url}"
+                 data-headline="${event.title.replace(/"/g, '&quot;')}"
+                 data-source="${event.source}">
+              <div class="tooltip">
+                <div class="headline">${event.title}</div>
+                <div class="source-badge">${event.source}</div>
+                <div class="click-hint">Click to read article →</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      
+      mainContent.innerHTML = html;
+      
+      // Add click handlers
+      document.querySelectorAll('.hotspot').forEach(hotspot => {
+        hotspot.addEventListener('click', () => {
+          window.open(hotspot.dataset.url, '_blank');
+        });
+      });
+      
+      // Update stats
+      document.getElementById('eventCount').textContent = dailyImageData.events.length;
+      document.getElementById('lastUpdate').textContent = 
+        'Updated ' + new Date(dailyImageData.generatedAt).toLocaleTimeString();
+    }
+
+    function showFallback() {
+      const mainContent = document.getElementById('mainContent');
+      mainContent.innerHTML = `
+        <div class="text-center py-12 text-gray-500">
+          <div class="text-6xl mb-4">🎨</div>
+          <div class="text-xl font-semibold mb-2">Generating Today's Visual Summary</div>
+          <div class="text-sm">Check back in a few moments...</div>
+        </div>
+      `;
+    }
+
+    // Load on page load
+    loadDailyImage();
+    
+    // Auto-refresh every 5 minutes
+    setInterval(loadDailyImage, 5 * 60 * 1000);
+  </script>
+</body>
+</html>

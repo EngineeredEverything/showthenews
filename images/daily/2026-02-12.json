@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-02-12T00:00:32.343Z",
+  "date": "2026-02-12",
+  "imageUrl": "/images/daily/2026-02-12.png",
+  "events": [
+    {
+      "title": "Dawson's Creek star James Van Der Beek dies aged 48",
+      "url": "https://www.bbc.com/news/articles/ce3x0lnyxd3o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "score": 4,
+      "referenceImage": "https://ichef.bbci.co.uk/news/1024/branded_news/2b57/live/74269880-0784-11f1-b2b9-0593a020cf50.jpg",
+      "hotspot": {
+        "x": 15,
+        "y": 50,
+        "width": 50,
+        "height": 40,
+        "zone": "foreground"
+      }
+    },
+    {
+      "title": "Pam Bondi clashes with House Democrats over Epstein files at DOJ oversight hearing",
+      "url": "https://www.npr.org/2026/02/11/nx-s1-5707280/pam-bondi-oversight-hearing-department-of-justice",
+      "source": "NPR",
+      "score": 4,
+      "referenceImage": "https://npr.brightspotcdn.com/dims3/default/strip/false/crop/8192x4608+0+428/resize/1400/quality/85/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F92%2F1a%2F1804d3034b76b2812d099a4b4348%2Fgettyimages-2261073042.jpg",
+      "hotspot": {
+        "x": 25,
+        "y": 20,
+        "width": 50,
+        "height": 35,
+        "zone": "midground"
+      }
+    },
+    {
+      "title": "Australia politics live: Angus Taylor confirms leadership challenge promising ‘clarity, courage and confidence’ after spill motion delivered to Ley",
+      "url": "https://www.theguardian.com/australia-news/live/2026/feb/12/australia-politics-live-liberals-leadership-spill-challenge-angus-taylor-sussan-ley-libspill-question-time-anthony-albanese-senate-estimates-ntwnfb",
+      "source": "The Guardian",
+      "score": 3,
+      "referenceImage": "https://i.guim.co.uk/img/media/0d3608039297d88c330e44513532728670b7ce1d/0_0_5000_4000/master/5000.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctbGl2ZS5wbmc&enable=upscale&s=3bae08c7e73f5ab058c657c79e65ab84",
+      "hotspot": {
+        "x": 50,
+        "y": 15,
+        "width": 45,
+        "height": 30,
+        "zone": "background"
+      }
+    }
+  ],
+  "prompt": "Professional editorial illustration of a unified symbolic scene representing today's major world news.\nAll elements exist in ONE cohesive world with dramatic lighting and atmospheric mood.\n\nIn the foreground (zone):\n- Dawson's Creek star James Van Der Beek dies aged 48\n- Visual prominence: important\n- Image reference: (reference: https://ichef.bbci.co.uk/news/1024/branded_news/2b57/live/74269880-0784-11f1-b2b9-0593a020cf50.jpg)\n- Sources: BBC, ABC News, ABC News, ABC News\n\nIn the midground (zone):\n- Pam Bondi clashes with House Democrats over Epstein files at DOJ oversight hearing\n- Visual prominence: important\n- Image reference: (reference: https://npr.brightspotcdn.com/dims3/default/strip/false/crop/8192x4608+0+428/resize/1400/quality/85/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F92%2F1a%2F1804d3034b76b2812d099a4b4348%2Fgettyimages-2261073042.jpg)\n- Sources: NPR, Al Jazeera, Al Jazeera, CBS News\n\nIn the background (zone):\n- Australia politics live: Angus Taylor confirms leadership challenge promising ‘clarity, courage and confidence’ after spill motion delivered to Ley\n- Visual prominence: important\n- Image reference: (reference: https://i.guim.co.uk/img/media/0d3608039297d88c330e44513532728670b7ce1d/0_0_5000_4000/master/5000.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctbGl2ZS5wbmc&enable=upscale&s=3bae08c7e73f5ab058c657c79e65ab84)\n- Sources: The Guardian, The Guardian, The Guardian\n\nStyle: Cinematic editorial photojournalism, symbolic but specific and recognizable,\nprofessional news illustration, designed to be understood from 15 feet away, no text labels.\nUnified by: dramatic lighting, coherent perspective, single cohesive atmosphere."
+}

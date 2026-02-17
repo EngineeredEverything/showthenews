@@ -1,0 +1,11 @@
+{
+  "daily": [
+    {
+      "email": "test@example.com",
+      "token": "74c5f662104f5df0727cb2b692850394c2e5e1b21c03802bf3109b6cd499ed7a",
+      "subscribedAt": "2026-02-12T06:18:31.929Z",
+      "confirmed": false
+    }
+  ],
+  "weekly": []
+}

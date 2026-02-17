@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotspot Adjuster - ShowTheNews</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #1a1a1a;
+      color: white;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+      color: #60a5fa;
+    }
+    
+    .image-container {
+      position: relative;
+      width: 100%;
+      max-width: 1792px;
+      margin: 20px auto;
+      border: 2px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .news-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .hotspot {
+      position: absolute;
+      border: 3px solid;
+      cursor: move;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      text-shadow: 0 0 4px black;
+      user-select: none;
+      padding: 8px;
+      line-height: 1.3;
+      text-align: center;
+      overflow: hidden;
+    }
+    
+    .hotspot.zone-0 { border-color: #ef4444; background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+    .hotspot.zone-1 { border-color: #3b82f6; background: rgba(59, 130, 246, 0.2); color: #93c5fd; }
+    .hotspot.zone-2 { border-color: #10b981; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
+    
+    .resize-handle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      z-index: 10;
+    }
+    
+    .resize-handle.nw { top: -6px; left: -6px; cursor: nw-resize; }
+    .resize-handle.ne { top: -6px; right: -6px; cursor: ne-resize; }
+    .resize-handle.sw { bottom: -6px; left: -6px; cursor: sw-resize; }
+    .resize-handle.se { bottom: -6px; right: -6px; cursor: se-resize; }
+    
+    .controls {
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    
+    .event-control {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #333;
+      border-radius: 6px;
+      border-left: 4px solid;
+    }
+    
+    .event-control.zone-0 { border-left-color: #ef4444; }
+    .event-control.zone-1 { border-left-color: #3b82f6; }
+    .event-control.zone-2 { border-left-color: #10b981; }
+    
+    .event-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    
+    .coords {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .coord-input {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .coord-input label {
+      font-size: 11px;
+      color: #aaa;
+      margin-bottom: 4px;
+    }
+    
+    .coord-input input {
+      background: #1a1a1a;
+      border: 1px solid #444;
+      color: white;
+      padding: 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-save {
+      background: #10b981;
+      color: white;
+    }
+    
+    .btn-save:hover {
+      background: #059669;
+    }
+    
+    .btn-copy {
+      background: #3b82f6;
+      color: white;
+    }
+    
+    .btn-copy:hover {
+      background: #2563eb;
+    }
+    
+    .instructions {
+      background: #2a2a2a;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    .instructions strong {
+      color: #60a5fa;
+    }
+    
+    pre {
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Hotspot Position Adjuster</h1>
+    
+    <div class="instructions">
+      <strong>How to use:</strong><br>
+      1. <strong>Read the headlines</strong> on the colored boxes<br>
+      2. <strong>Drag each box</strong> to position it over where that story appears in the image<br>
+      3. <strong>Resize boxes</strong> by dragging the white circles in the corners<br>
+      4. Fine-tune positions/sizes with the coordinate inputs below<br>
+      5. Click <strong>Save</strong> to update the metadata file<br>
+      6. Refresh the main site to see updated hotspots
+    </div>
+    
+    <div class="image-container" id="imageContainer">
+      <img src="images/daily/2026-02-10.png" alt="Daily News" class="news-image" id="newsImage">
+      <!-- Hotspots will be added here -->
+    </div>
+    
+    <div class="controls" id="controls">
+      <!-- Event controls will be added here -->
+    </div>
+    
+    <div class="buttons">
+      <button class="btn-save" onclick="saveCoordinates()">💾 Save to Metadata</button>
+      <button class="btn-copy" onclick="copyJSON()">📋 Copy JSON</button>
+    </div>
+    
+    <pre id="jsonOutput"></pre>
+  </div>
+
+  <script>
+    let metadata = null;
+    let hotspots = [];
+    let isDragging = false;
+    let isResizing = false;
+    let currentHotspot = null;
+    let resizeHandle = null;
+    let startPos = { x: 0, y: 0 };
+    let startSize = { width: 0, height: 0 };
+    let startOffset = { left: 0, top: 0 };
+    let imageContainer = null;
+    
+    async function loadMetadata() {
+      const response = await fetch('./api/daily-image');
+      metadata = await response.json();
+      renderHotspots();
+      renderControls();
+      updateJSON();
+    }
+    
+    function renderHotspots() {
+      imageContainer = document.getElementById('imageContainer');
+      const image = document.getElementById('newsImage');
+      
+      metadata.events.forEach((event, idx) => {
+        const hotspot = document.createElement('div');
+        hotspot.className = `hotspot zone-${idx}`;
+        hotspot.dataset.index = idx;
+        hotspot.style.left = event.hotspot.x + '%';
+        hotspot.style.top = event.hotspot.y + '%';
+        hotspot.style.width = event.hotspot.width + '%';
+        hotspot.style.height = event.hotspot.height + '%';
+        
+        // Show truncated headline
+        const headline = event.title.length > 60 ? event.title.slice(0, 60) + '...' : event.title;
+        hotspot.innerHTML = `
+          <span>${headline}</span>
+          <div class="resize-handle nw" data-handle="nw"></div>
+          <div class="resize-handle ne" data-handle="ne"></div>
+          <div class="resize-handle sw" data-handle="sw"></div>
+          <div class="resize-handle se" data-handle="se"></div>
+        `;
+        
+        // Drag handlers for moving
+        hotspot.addEventListener('mousedown', (e) => {
+          if (!e.target.classList.contains('resize-handle')) {
+            startDrag(e);
+          }
+        });
+        
+        // Resize handlers
+        hotspot.querySelectorAll('.resize-handle').forEach(handle => {
+          handle.addEventListener('mousedown', startResize);
+        });
+        
+        imageContainer.appendChild(hotspot);
+        hotspots.push(hotspot);
+      });
+      
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    }
+    
+    function startDrag(e) {
+      e.stopPropagation();
+      isDragging = true;
+      currentHotspot = e.target.closest('.hotspot');
+      const rect = imageContainer.getBoundingClientRect();
+      startPos = {
+        x: e.clientX - currentHotspot.offsetLeft,
+        y: e.clientY - currentHotspot.offsetTop
+      };
+      currentHotspot.style.opacity = '0.7';
+    }
+    
+    function startResize(e) {
+      e.stopPropagation();
+      isResizing = true;
+      currentHotspot = e.target.closest('.hotspot');
+      resizeHandle = e.target.dataset.handle;
+      
+      const rect = imageContainer.getBoundingClientRect();
+      startPos = { x: e.clientX, y: e.clientY };
+      startSize = {
+        width: currentHotspot.offsetWidth,
+        height: currentHotspot.offsetHeight
+      };
+      startOffset = {
+        left: currentHotspot.offsetLeft,
+        top: currentHotspot.offsetTop
+      };
+      
+      currentHotspot.style.opacity = '0.7';
+    }
+    
+    function onMouseMove(e) {
+      if (isDragging) {
+        const rect = imageContainer.getBoundingClientRect();
+        let x = e.clientX - rect.left - startPos.x;
+        let y = e.clientY - rect.top - startPos.y;
+        
+        // Keep within bounds
+        x = Math.max(0, Math.min(x, rect.width - currentHotspot.offsetWidth));
+        y = Math.max(0, Math.min(y, rect.height - currentHotspot.offsetHeight));
+        
+        // Convert to percentage
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+        
+        currentHotspot.style.left = xPercent + '%';
+        currentHotspot.style.top = yPercent + '%';
+        
+        // Update input fields
+        const idx = currentHotspot.dataset.index;
+        document.getElementById(`x-${idx}`).value = Math.round(xPercent);
+        document.getElementById(`y-${idx}`).value = Math.round(yPercent);
+        
+        updateMetadata();
+      } else if (isResizing) {
+        const rect = imageContainer.getBoundingClientRect();
+        const dx = e.clientX - startPos.x;
+        const dy = e.clientY - startPos.y;
+        
+        let newWidth = startSize.width;
+        let newHeight = startSize.height;
+        let newLeft = startOffset.left;
+        let newTop = startOffset.top;
+        
+        // Adjust based on which handle is being dragged
+        if (resizeHandle.includes('e')) { // East (right)
+          newWidth = startSize.width + dx;
+        }
+        if (resizeHandle.includes('w')) { // West (left)
+          newWidth = startSize.width - dx;
+          newLeft = startOffset.left + dx;
+        }
+        if (resizeHandle.includes('s')) { // South (bottom)
+          newHeight = startSize.height + dy;
+        }
+        if (resizeHandle.includes('n')) { // North (top)
+          newHeight = startSize.height - dy;
+          newTop = startOffset.top + dy;
+        }
+        
+        // Minimum size
+        newWidth = Math.max(50, newWidth);
+        newHeight = Math.max(40, newHeight);
+        
+        // Keep within bounds
+        newLeft = Math.max(0, Math.min(newLeft, rect.width - newWidth));
+        newTop = Math.max(0, Math.min(newTop, rect.height - newHeight));
+        
+        // Convert to percentage
+        const leftPercent = (newLeft / rect.width) * 100;
+        const topPercent = (newTop / rect.height) * 100;
+        const widthPercent = (newWidth / rect.width) * 100;
+        const heightPercent = (newHeight / rect.height) * 100;
+        
+        currentHotspot.style.left = leftPercent + '%';
+        currentHotspot.style.top = topPercent + '%';
+        currentHotspot.style.width = widthPercent + '%';
+        currentHotspot.style.height = heightPercent + '%';
+        
+        // Update input fields
+        const idx = currentHotspot.dataset.index;
+        document.getElementById(`x-${idx}`).value = Math.round(leftPercent);
+        document.getElementById(`y-${idx}`).value = Math.round(topPercent);
+        document.getElementById(`width-${idx}`).value = Math.round(widthPercent);
+        document.getElementById(`height-${idx}`).value = Math.round(heightPercent);
+        
+        updateMetadata();
+      }
+    }
+    
+    function onMouseUp() {
+      if (currentHotspot) {
+        currentHotspot.style.opacity = '1';
+      }
+      isDragging = false;
+      isResizing = false;
+      currentHotspot = null;
+      resizeHandle = null;
+    }
+    
+    function renderControls() {
+      const controls = document.getElementById('controls');
+      
+      metadata.events.forEach((event, idx) => {
+        const control = document.createElement('div');
+        control.className = `event-control zone-${idx}`;
+        const colorLabel = idx === 0 ? '🔴 RED' : idx === 1 ? '🔵 BLUE' : '🟢 GREEN';
+        control.innerHTML = `
+          <div class="event-title">${colorLabel}: ${event.title}</div>
+          <div class="coords">
+            <div class="coord-input">
+              <label>X (%)</label>
+              <input type="number" id="x-${idx}" value="${event.hotspot.x}" 
+                     onchange="updateHotspot(${idx}, 'x', this.value)">
+            </div>
+            <div class="coord-input">
+              <label>Y (%)</label>
+              <input type="number" id="y-${idx}" value="${event.hotspot.y}"
+                     onchange="updateHotspot(${idx}, 'y', this.value)">
+            </div>
+            <div class="coord-input">
+              <label>Width (%)</label>
+              <input type="number" id="width-${idx}" value="${event.hotspot.width}"
+                     onchange="updateHotspot(${idx}, 'width', this.value)">
+            </div>
+            <div class="coord-input">
+              <label>Height (%)</label>
+              <input type="number" id="height-${idx}" value="${event.hotspot.height}"
+                     onchange="updateHotspot(${idx}, 'height', this.value)">
+            </div>
+          </div>
+        `;
+        controls.appendChild(control);
+      });
+    }
+    
+    function updateHotspot(idx, prop, value) {
+      const hotspot = hotspots[idx];
+      hotspot.style[prop === 'x' ? 'left' : prop === 'y' ? 'top' : prop] = value + '%';
+      updateMetadata();
+    }
+    
+    function updateMetadata() {
+      metadata.events.forEach((event, idx) => {
+        event.hotspot.x = parseInt(document.getElementById(`x-${idx}`).value);
+        event.hotspot.y = parseInt(document.getElementById(`y-${idx}`).value);
+        event.hotspot.width = parseInt(document.getElementById(`width-${idx}`).value);
+        event.hotspot.height = parseInt(document.getElementById(`height-${idx}`).value);
+      });
+      updateJSON();
+    }
+    
+    function updateJSON() {
+      document.getElementById('jsonOutput').textContent = JSON.stringify(metadata, null, 2);
+    }
+    
+    async function saveCoordinates() {
+      try {
+        const response = await fetch('./api/update-hotspots', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(metadata)
+        });
+        
+        if (response.ok) {
+          alert('✅ Hotspots saved successfully!');
+        } else {
+          alert('❌ Error saving hotspots');
+        }
+      } catch (error) {
+        alert('❌ Error: ' + error.message);
+      }
+    }
+    
+    function copyJSON() {
+      navigator.clipboard.writeText(JSON.stringify(metadata, null, 2));
+      alert('📋 JSON copied to clipboard!');
+    }
+    
+    loadMetadata();
+  </script>
+</body>
+</html>

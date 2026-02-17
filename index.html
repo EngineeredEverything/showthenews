@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShowTheNews - AI-Powered News Compression | Glanceable News Intelligence</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="ShowTheNews is an AI news aggregator that curates and summarizes 150+ stories into glanceable news digests. Get automated news summaries and personalized news feeds powered by AI journalism technology.">
+  <meta name="keywords" content="AI news aggregator, curated news digest, automated news summary, AI journalism, personalized news feed, news compression, ambient display, B2B news, office news display">
+  <meta name="author" content="ShowTheNews">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://showthenews.com/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://showthenews.com/">
+  <meta property="og:title" content="ShowTheNews - AI News Aggregator & Automated News Summaries">
+  <meta property="og:description" content="AI-powered news curation: 150+ stories compressed into glanceable digests. Get situational awareness in seconds.">
+  <meta property="og:image" content="https://showthenews.com/images/og-image.png">
+  <meta property="og:site_name" content="ShowTheNews">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://showthenews.com/">
+  <meta name="twitter:title" content="ShowTheNews - AI News Aggregator">
+  <meta name="twitter:description" content="AI-powered news curation: 150+ stories into glanceable digests. Perfect for B2B ambient displays.">
+  <meta name="twitter:image" content="https://showthenews.com/images/twitter-card.png">
+  
+  <!-- Structured Data: NewsMediaOrganization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsMediaOrganization",
+    "name": "ShowTheNews",
+    "url": "https://showthenews.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://showthenews.com/images/logo.png"
+    },
+    "description": "AI-powered news aggregation platform that curates and summarizes global news into glanceable situational awareness digests",
+    "sameAs": [],
+    "publishingPrinciples": "https://showthenews.com/#faq"
+  }
+  </script>
+  
+  <!-- Structured Data: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ShowTheNews",
+    "description": "AI news aggregator that compresses 150+ stories into curated news digests with automated summaries",
+    "url": "https://showthenews.com/",
+    "applicationCategory": "NewsApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "4.99",
+      "priceCurrency": "USD",
+      "description": "ShowTheNews Pro - Premium news curation"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ShowTheNews",
+      "url": "https://showthenews.com"
+    }
+  }
+  </script>
+  
+  <!-- Structured Data: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ShowTheNews?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ShowTheNews is an AI-powered news aggregator that collects stories from 150+ trusted sources and compresses them into glanceable news digests. Our AI journalism technology automatically curates, clusters, and summarizes the most important stories so you get situational awareness in seconds, not hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does AI news curation work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our AI analyzes news from hundreds of sources in real-time, identifying related stories and clustering them into unified events. It then generates concise summaries that capture the key facts, eliminating redundancy and giving you the full picture without reading dozens of articles. The system updates continuously throughout the day."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do you get your news sources?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ShowTheNews aggregates from 150+ verified news sources including major wire services (AP, Reuters), national newspapers, international outlets, and specialized industry publications. We prioritize credible, established journalism to ensure accuracy and reliability in our automated summaries."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does ShowTheNews cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ShowTheNews offers a free tier with access to our live news wall. ShowTheNews Pro is available for $4.99/month and includes early access to breaking news, deeper analysis, custom topic alerts, and ad-free browsing. B2B ambient display licenses are available for offices and coworking spaces."
+        }
+      }
+    ]
+  }
+  </script>
+  
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: #030712;
+      color: white;
+      min-height: 100vh;
+    }
+    
+    .image-container {
+      position: relative;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .news-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .hotspot {
+      position: absolute;
+      border: 2px solid transparent;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    
+    /* Debug mode - uncomment to see hotspot boundaries */
+    /* .hotspot { border: 2px dashed rgba(96, 165, 250, 0.3) !important; } */
+    
+    .hotspot:hover {
+      border-color: rgba(96, 165, 250, 0.9);
+      background: rgba(96, 165, 250, 0.2);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
+      transform: scale(1.02);
+    }
+    
+    .tooltip {
+      position: fixed;
+      background: rgba(0, 0, 0, 0.95);
+      color: white;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      max-width: 400px;
+      min-width: 200px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      white-space: normal;
+    }
+    
+    .tooltip.show {
+      opacity: 1;
+    }
+    
+    .tooltip-arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 8px solid transparent;
+    }
+    
+    .tooltip-arrow.top {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom-color: rgba(0, 0, 0, 0.95);
+    }
+    
+    .tooltip-arrow.bottom {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: rgba(0, 0, 0, 0.95);
+    }
+    
+    .headline {
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    
+    .source-badge {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.25);
+      color: #60a5fa;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    
+    .click-hint {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 6px;
+      font-style: italic;
+    }
+    
+    .loading-state {
+      text-align: center;
+      padding: 120px 20px;
+      color: #9ca3af;
+    }
+    
+    .spinner {
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top-color: #60a5fa;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 20px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Line clamp utilities */
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-white">
+  <div class="container mx-auto px-4 py-8 max-w-7xl">
+    <!-- Header -->
+    <div class="mb-8 border-b border-gray-800 pb-6">
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            📰 ShowTheNews
+          </h1>
+          <p class="text-gray-400 mt-2">Visual news intelligence • Hover to explore • Click to read</p>
+        </div>
+        <div class="text-right">
+          <div class="text-sm text-gray-500" id="lastUpdate">Loading...</div>
+          <div class="text-xs text-gray-600 mt-1">
+            <span id="eventCount">—</span> stories visualized •
+            <a href="./analytics.html" class="text-blue-400 hover:text-blue-300 underline ml-1">📊 Analytics</a> •
+            <a href="./rss.xml" class="text-orange-400 hover:text-orange-300 underline ml-1" title="Subscribe via RSS">📡 RSS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <div>Generating today's visual news summary...</div>
+      </div>
+    </div>
+    
+    <!-- Instructions -->
+    <div class="text-center mt-8 text-gray-500 text-sm" id="instructions" style="display: none;">
+      <strong class="text-blue-400">Click</strong> any story to read the full article • 
+      <strong class="text-blue-400">Press F</strong> for fullscreen
+      <button onclick="toggleDebug()" class="ml-4 text-xs text-gray-600 hover:text-blue-400" style="text-decoration: underline;">
+        Show Hotspot Boundaries
+      </button>
+    </div>
+    
+    <!-- Status Footer (B2B Display) -->
+    <div class="fixed bottom-4 right-4 bg-gray-900/80 backdrop-blur px-4 py-2 rounded-lg border border-gray-800 text-xs text-gray-400" id="statusFooter" style="display: none;">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+        <span id="dataFreshness">Updated moments ago</span>
+        <span class="text-gray-600">•</span>
+        <span id="sourceCount">—</span> sources
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let dailyImageData = null;
+
+    async function loadDailyImage() {
+      try {
+        console.log('Fetching daily image...');
+        const response = await fetch('./api/daily-image');
+        const data = await response.json();
+        
+        if (data.error) {
+          console.log('No daily image yet, showing fallback');
+          showFallback();
+          return;
+        }
+        
+        dailyImageData = data;
+        renderDailyImage();
+        document.getElementById('instructions').style.display = 'block';
+        
+      } catch (err) {
+        console.error('Error loading daily image:', err);
+        showFallback();
+      }
+    }
+
+    function renderDailyImage() {
+      const mainContent = document.getElementById('mainContent');
+      
+      // Fix image path - remove leading slash for relative path
+      const imagePath = dailyImageData.imageUrl.startsWith('/') 
+        ? dailyImageData.imageUrl.substring(1) 
+        : dailyImageData.imageUrl;
+      
+      const html = `
+        <div class="image-container fade-in" style="max-width: 1792px; margin: 0 auto;">
+          <img src="${imagePath}" alt="Today's News" class="news-image" id="newsImage">
+          ${dailyImageData.events.map((event, idx) => `
+            <div class="hotspot" 
+                 style="left: ${event.hotspot.x}%; top: ${event.hotspot.y}%; width: ${event.hotspot.width}%; height: ${event.hotspot.height}%;"
+                 data-url="${event.url}"
+                 data-headline="${event.title.replace(/"/g, '&quot;')}"
+                 data-source="${event.source}"
+                 data-index="${idx}">
+            </div>
+          `).join('')}
+        </div>
+        
+        <!-- Single tooltip that follows mouse -->
+        <div class="tooltip" id="newsTooltip">
+          <div id="tooltipContent"></div>
+          <div class="tooltip-arrow bottom" id="tooltipArrow"></div>
+        </div>
+      `;
+      
+      mainContent.innerHTML = html;
+      
+      const tooltip = document.getElementById('newsTooltip');
+      const tooltipContent = document.getElementById('tooltipContent');
+      const tooltipArrow = document.getElementById('tooltipArrow');
+      
+      // Add hover and click handlers
+      document.querySelectorAll('.hotspot').forEach(hotspot => {
+        // Hover to show tooltip
+        hotspot.addEventListener('mouseenter', (e) => {
+          const headline = hotspot.dataset.headline;
+          const source = hotspot.dataset.source;
+          
+          tooltipContent.innerHTML = `
+            <div class="headline">${headline}</div>
+            <div class="source-badge">${source}</div>
+            <div class="click-hint">Click to read article →</div>
+          `;
+          
+          positionTooltip(hotspot, tooltip, tooltipArrow);
+          tooltip.classList.add('show');
+        });
+        
+        hotspot.addEventListener('mouseleave', () => {
+          tooltip.classList.remove('show');
+        });
+        
+        // Click to open article
+        hotspot.addEventListener('click', () => {
+          const headline = hotspot.dataset.headline;
+          
+          // Track click analytics
+          trackClick(headline);
+          
+          window.open(hotspot.dataset.url, '_blank');
+        });
+      });
+      
+      // Position tooltip smartly to avoid edges
+      function positionTooltip(hotspot, tooltip, arrow) {
+        const rect = hotspot.getBoundingClientRect();
+        const tooltipRect = tooltip.getBoundingClientRect();
+        
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        
+        let top, left;
+        
+        // Default: show above hotspot
+        top = rect.top - tooltipRect.height - 15;
+        left = centerX - tooltipRect.width / 2;
+        
+        // If tooltip goes off top, show below instead
+        if (top < 10) {
+          top = rect.bottom + 15;
+          arrow.className = 'tooltip-arrow top';
+        } else {
+          arrow.className = 'tooltip-arrow bottom';
+        }
+        
+        // Keep tooltip within horizontal bounds
+        if (left < 10) {
+          left = 10;
+        } else if (left + tooltipRect.width > viewportWidth - 10) {
+          left = viewportWidth - tooltipRect.width - 10;
+        }
+        
+        tooltip.style.top = top + 'px';
+        tooltip.style.left = left + 'px';
+      }
+      
+      // Update stats
+      document.getElementById('eventCount').textContent = dailyImageData.events.length;
+      document.getElementById('lastUpdate').textContent = 
+        'Updated ' + new Date(dailyImageData.generatedAt).toLocaleTimeString();
+    }
+
+    async function showFallback() {
+      const mainContent = document.getElementById('mainContent');
+      
+      try {
+        // Fetch live news events
+        const response = await fetch('./api/news');
+        const data = await response.json();
+        
+        // Show live news grid instead of placeholder
+        const html = `
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 fade-in">
+            ${data.events.slice(0, 12).map(event => `
+              <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-5 hover:border-blue-500 hover:bg-gray-900/70 transition-all cursor-pointer group"
+                   onclick="trackClick('${event.title.replace(/'/g, "\\'")}'); window.open('${event.sources[0].url}', '_blank')">
+                ${event.image ? `
+                  <div class="mb-3 rounded-lg overflow-hidden">
+                    <img src="${event.image}" alt="${event.title}" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
+                  </div>
+                ` : ''}
+                <div class="flex items-center gap-2 mb-2">
+                  ${event.priority === 'high' ? '<span class="text-xs text-red-400 font-semibold">● BREAKING</span>' : ''}
+                  <span class="text-xs text-gray-500">${event.sourceCount} source${event.sourceCount > 1 ? 's' : ''}</span>
+                </div>
+                <h3 class="text-base font-semibold mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
+                  ${event.title}
+                </h3>
+                <p class="text-sm text-gray-400 mb-3 line-clamp-2">
+                  ${event.digest}
+                </p>
+                <div class="flex flex-wrap gap-1.5">
+                  ${event.sources.slice(0, 3).map(s => `
+                    <span class="text-xs px-2 py-1 bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
+                      ${s.name}
+                    </span>
+                  `).join('')}
+                  ${event.sourceCount > 3 ? `<span class="text-xs px-2 py-1 text-gray-500">+${event.sourceCount - 3} more</span>` : ''}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+        mainContent.innerHTML = html;
+        
+        // Update header stats
+        document.getElementById('eventCount').textContent = data.events.length;
+        document.getElementById('lastUpdate').textContent = 
+          'Updated ' + new Date(data.lastUpdate).toLocaleTimeString();
+        document.getElementById('instructions').style.display = 'block';
+        
+      } catch (err) {
+        console.error('Error loading news:', err);
+        mainContent.innerHTML = `
+          <div class="text-center py-12 text-gray-500">
+            <div class="text-6xl mb-4">⚠️</div>
+            <div class="text-xl font-semibold mb-2">Unable to Load News</div>
+            <div class="text-sm">Please refresh the page</div>
+          </div>
+        `;
+      }
+    }
+
+    // Debug mode toggle
+    let debugMode = false;
+    window.toggleDebug = function() {
+      debugMode = !debugMode;
+      document.querySelectorAll('.hotspot').forEach(hotspot => {
+        if (debugMode) {
+          hotspot.style.border = '2px dashed rgba(96, 165, 250, 0.6)';
+          hotspot.style.background = 'rgba(96, 165, 250, 0.1)';
+        } else {
+          hotspot.style.border = '2px solid transparent';
+          hotspot.style.background = 'transparent';
+        }
+      });
+      
+      const btn = event.target;
+      btn.textContent = debugMode ? 'Hide Hotspot Boundaries' : 'Show Hotspot Boundaries';
+    };
+    
+    // Load on page load
+    loadDailyImage();
+    
+    // Auto-refresh every 5 minutes
+    setInterval(loadDailyImage, 5 * 60 * 1000);
+    
+    // Fullscreen keyboard shortcut (F key)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    });
+    
+    // Show/hide cursor in fullscreen
+    let cursorTimeout;
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        // Hide cursor after 3 seconds of inactivity in fullscreen
+        document.addEventListener('mousemove', resetCursorTimeout);
+        resetCursorTimeout();
+      } else {
+        document.body.style.cursor = 'default';
+        document.removeEventListener('mousemove', resetCursorTimeout);
+        clearTimeout(cursorTimeout);
+      }
+    });
+    
+    function resetCursorTimeout() {
+      document.body.style.cursor = 'default';
+      clearTimeout(cursorTimeout);
+      cursorTimeout = setTimeout(() => {
+        if (document.fullscreenElement) {
+          document.body.style.cursor = 'none';
+        }
+      }, 3000);
+    }
+    
+    // Track event clicks for analytics
+    async function trackClick(eventTitle) {
+      try {
+        await fetch('./api/track-click', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ eventTitle })
+        });
+        console.log('Tracked click:', eventTitle);
+      } catch (err) {
+        console.error('Click tracking failed:', err);
+      }
+    }
+    
+    // Update status footer with data freshness
+    async function updateStatusFooter() {
+      try {
+        const response = await fetch('./api/news');
+        const data = await response.json();
+        
+        if (data.lastUpdate) {
+          const minutesAgo = Math.floor((Date.now() - new Date(data.lastUpdate)) / 60000);
+          const freshnessText = minutesAgo < 1 ? 'Updated moments ago' :
+                               minutesAgo === 1 ? 'Updated 1 minute ago' :
+                               minutesAgo < 60 ? `Updated ${minutesAgo} minutes ago` :
+                               'Updated over an hour ago';
+          
+          document.getElementById('dataFreshness').textContent = freshnessText;
+          document.getElementById('sourceCount').textContent = `${data.sources.length} sources`;
+          document.getElementById('statusFooter').style.display = 'block';
+        }
+      } catch (err) {
+        console.error('Error updating status:', err);
+      }
+    }
+    
+    updateStatusFooter();
+    setInterval(updateStatusFooter, 60 * 1000); // Update every minute
+  </script>
+
+<!-- FAQ Section -->
+<section id="faq" class="max-w-4xl mx-auto px-6 py-16 border-t border-gray-800">
+  <h2 class="text-3xl font-bold text-center mb-12 text-white">Frequently Asked Questions</h2>
+  
+  <div class="space-y-8">
+    <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
+      <h3 class="text-xl font-semibold text-blue-400 mb-3">What is ShowTheNews?</h3>
+      <p class="text-gray-300 leading-relaxed">ShowTheNews is an AI-powered news aggregator that collects stories from 150+ trusted sources and compresses them into glanceable news digests. Our AI journalism technology automatically curates, clusters, and summarizes the most important stories so you get situational awareness in seconds, not hours.</p>
+    </div>
+    
+    <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
+      <h3 class="text-xl font-semibold text-blue-400 mb-3">How does AI news curation work?</h3>
+      <p class="text-gray-300 leading-relaxed">Our AI analyzes news from hundreds of sources in real-time, identifying related stories and clustering them into unified events. It then generates concise summaries that capture the key facts, eliminating redundancy and giving you the full picture without reading dozens of articles. The system updates continuously throughout the day.</p>
+    </div>
+    
+    <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
+      <h3 class="text-xl font-semibold text-blue-400 mb-3">Where do you get your news sources?</h3>
+      <p class="text-gray-300 leading-relaxed">ShowTheNews aggregates from 150+ verified news sources including major wire services (AP, Reuters), national newspapers, international outlets, and specialized industry publications. We prioritize credible, established journalism to ensure accuracy and reliability in our automated summaries.</p>
+    </div>
+    
+    <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
+      <h3 class="text-xl font-semibold text-blue-400 mb-3">How much does ShowTheNews cost?</h3>
+      <p class="text-gray-300 leading-relaxed">ShowTheNews offers a free tier with access to our live news wall. <strong>ShowTheNews Pro</strong> is available for <strong>$4.99/month</strong> and includes early access to breaking news, deeper analysis, custom topic alerts, and ad-free browsing. B2B ambient display licenses are available for offices and coworking spaces.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Feedback Widget -->
+<style>.fb-btn{position:fixed;bottom:15px;right:15px;background:rgba(0,0,0,0.05);color:#6b7280;padding:8px 14px;border-radius:20px;cursor:pointer;font-size:12px;z-index:9999;border:1px solid rgba(0,0,0,0.1);transition:all 0.2s;opacity:0.4}.fb-btn:hover{opacity:1;background:rgba(0,0,0,0.08);transform:translateY(-1px)}.fb-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:10000;align-items:center;justify-content:center}.fb-modal.active{display:flex}.fb-content{background:#fff;padding:30px;border-radius:12px;max-width:500px;width:90%}.fb-content h3{margin:0 0 20px;color:#1f2937}.fb-content textarea,.fb-content input{width:100%;padding:12px;margin-bottom:15px;border:1px solid #d1d5db;border-radius:6px;font-size:14px}.fb-content textarea{min-height:120px}.fb-btns{display:flex;gap:10px;justify-content:flex-end}.fb-btns button{padding:10px 20px;border-radius:6px;border:none;cursor:pointer;font-weight:600}.fb-submit{background:#3b82f6;color:#fff}.fb-cancel{background:#e5e7eb;color:#374151}.fb-ok{color:#10b981;margin-top:10px;display:none}</style>
+<button class="fb-btn" onclick="openFB()">💬 Feedback</button>
+<div class="fb-modal" id="fbModal"><div class="fb-content"><h3>Send Feedback</h3><input id="fbEmail" placeholder="Your email (optional)"><textarea id="fbMsg" placeholder="Share your thoughts, report a bug, or request a feature..."></textarea><div class="fb-btns"><button class="fb-cancel" onclick="closeFB()">Cancel</button><button class="fb-submit" onclick="sendFB()">Submit</button></div><div class="fb-ok" id="fbOk">✅ Thank you! Your feedback has been sent.</div></div></div>
+<script>function openFB(){document.getElementById('fbModal').classList.add('active')}function closeFB(){document.getElementById('fbModal').classList.remove('active');document.getElementById('fbMsg').value='';document.getElementById('fbEmail').value='';document.getElementById('fbOk').style.display='none'}function sendFB(){const msg=document.getElementById('fbMsg').value;if(!msg.trim()){alert('Please enter a message');return}console.log('Feedback:',{site:location.hostname,msg});document.getElementById('fbOk').style.display='block';setTimeout(closeFB,2000)}document.getElementById('fbModal').onclick=function(e){if(e.target===this)closeFB()}</script>
+</body>
+</html>
