@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShowTheNews - AI-Powered News Intelligence</title>
+  
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #0a0e27 0%, #030712 100%);
+      color: white;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Animated background gradient */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.03) 0%, transparent 70%);
+      animation: rotate 30s linear infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Enhanced image container */
+    .image-container {
+      position: relative;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                  0 0 0 1px rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .image-container:hover {
+      transform: scale(1.005);
+      box-shadow: 0 30px 60px -15px rgba(59, 130, 246, 0.3),
+                  0 0 0 1px rgba(96, 165, 250, 0.15);
+    }
+    
+    .news-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    /* Enhanced hotspots */
+    .hotspot {
+      position: absolute;
+      border: 2px solid transparent;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border-radius: 12px;
+    }
+    
+    .hotspot:hover {
+      border-color: rgba(96, 165, 250, 0.95);
+      background: radial-gradient(circle at center, rgba(96, 165, 250, 0.25) 0%, rgba(96, 165, 250, 0.15) 100%);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 40px rgba(96, 165, 250, 0.5),
+                  inset 0 0 20px rgba(96, 165, 250, 0.2);
+      transform: scale(1.03);
+    }
+    
+    .hotspot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.4) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+    
+    .hotspot:hover::after {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+    }
+    
+    /* Enhanced tooltip */
+    .tooltip {
+      position: fixed;
+      background: linear-gradient(135deg, rgba(17, 24, 39, 0.98) 0%, rgba(0, 0, 0, 0.98) 100%);
+      color: white;
+      padding: 20px 24px;
+      border-radius: 16px;
+      font-size: 15px;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5),
+                  0 0 0 1px rgba(96, 165, 250, 0.4);
+      max-width: 450px;
+      min-width: 250px;
+      backdrop-filter: blur(16px);
+    }
+    
+    .tooltip.show {
+      opacity: 1;
+      transform: translateY(-4px);
+    }
+    
+    .headline {
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      font-size: 16px;
+      color: #fff;
+    }
+    
+    .source-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(96, 165, 250, 0.2) 100%);
+      color: #60a5fa;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+    
+    .click-hint {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 10px;
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    /* Enhanced header */
+    .header-gradient {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 24px;
+      margin-bottom: 32px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .title-gradient {
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    
+    /* News cards for mobile/fallback */
+    .news-card {
+      background: linear-gradient(135deg, rgba(31, 41, 55, 0.7) 0%, rgba(17, 24, 39, 0.9) 100%);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .news-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(96, 165, 250, 0.3);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
+    }
+    
+    .news-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.4;
+      color: #fff;
+    }
+    
+    .news-card-digest {
+      color: #9ca3af;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    
+    .sources-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    
+    .source-tag {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(96, 165, 250, 0.2);
+    }
+    
+    .recency-tag {
+      color: #6ee7b7;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    /* Loading animation */
+    .loading-state {
+      text-align: center;
+      padding: 120px 20px;
+      color: #9ca3af;
+    }
+    
+    .spinner {
+      border: 3px solid rgba(96, 165, 250, 0.1);
+      border-top-color: #60a5fa;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 24px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Status footer */
+    .status-footer {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
+      backdrop-filter: blur(12px);
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(96, 165, 250, 0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      z-index: 50;
+    }
+    
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.1); }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-gradient {
+        padding: 16px;
+      }
+      
+      .title-gradient {
+        font-size: 28px;
+      }
+      
+      .status-footer {
+        bottom: 12px;
+        right: 12px;
+        font-size: 11px;
+        padding: 8px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container mx-auto px-4 py-8 max-w-7xl">
+    <!-- Header -->
+    <div class="header-gradient">
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <div>
+          <h1 class="text-5xl title-gradient">
+            📰 ShowTheNews
+          </h1>
+          <p class="text-gray-300 mt-3 text-lg">Visual news intelligence • Hover to explore • Click to read</p>
+        </div>
+        <div class="text-right">
+          <div class="text-sm text-gray-400" id="lastUpdate">Loading...</div>
+          <div class="text-xs text-gray-500 mt-2 flex gap-3 justify-end flex-wrap">
+            <span id="eventCount">—</span> stories visualized
+            <span class="text-gray-700">•</span>
+            <a href="./analytics.html" class="text-blue-400 hover:text-blue-300 underline transition">📊 Analytics</a>
+            <span class="text-gray-700">•</span>
+            <a href="./rss.xml" class="text-orange-400 hover:text-orange-300 underline transition" title="Subscribe via RSS">📡 RSS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <div class="text-lg">Generating today's visual news summary...</div>
+        <div class="text-sm text-gray-600 mt-2">Analyzing top stories from 15 global sources</div>
+      </div>
+    </div>
+    
+    <!-- Instructions -->
+    <div class="text-center mt-12 text-gray-400 text-sm" id="instructions" style="display: none;">
+      <div class="inline-flex items-center gap-6 bg-gray-900/50 backdrop-blur px-6 py-3 rounded-full border border-gray-800">
+        <span><strong class="text-blue-400">Hover</strong> to see details</span>
+        <span class="text-gray-700">•</span>
+        <span><strong class="text-blue-400">Click</strong> to read article</span>
+        <span class="text-gray-700">•</span>
+        <span><strong class="text-blue-400">F</strong> for fullscreen</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status Footer -->
+  <div class="status-footer" id="statusFooter" style="display: none;">
+    <div class="flex items-center gap-3">
+      <div class="pulse-dot"></div>
+      <span class="text-gray-300" id="dataFreshness">Updated moments ago</span>
+      <span class="text-gray-700">•</span>
+      <span class="text-gray-400" id="sourceCount">—</span> sources
+    </div>
+  </div>
+
+  <!-- Single tooltip -->
+  <div class="tooltip" id="newsTooltip">
+    <div id="tooltipContent"></div>
+  </div>
+
+  <script>
+    let dailyImageData = null;
+
+    async function loadDailyImage() {
+      try {
+        console.log('Fetching daily image...');
+        const response = await fetch('./api/daily-image');
+        const data = await response.json();
+        
+        if (data.error) {
+          console.log('No daily image yet, showing fallback');
+          await showFallback();
+          return;
+        }
+        
+        dailyImageData = data;
+        renderDailyImage();
+        updateMetadata();
+        document.getElementById('instructions').style.display = 'block';
+        document.getElementById('statusFooter').style.display = 'block';
+        
+      } catch (err) {
+        console.error('Error loading daily image:', err);
+        await showFallback();
+      }
+    }
+
+    function renderDailyImage() {
+      const mainContent = document.getElementById('mainContent');
+      
+      const imagePath = dailyImageData.imageUrl.startsWith('/') 
+        ? dailyImageData.imageUrl.substring(1) 
+        : dailyImageData.imageUrl;
+      
+      const html = `
+        <div class="image-container fade-in" style="max-width: 1792px; margin: 0 auto;">
+          <img src="${imagePath}" alt="Today's News" class="news-image" id="newsImage">
+          ${dailyImageData.events.map((event, idx) => `
+            <div class="hotspot" 
+                 style="left: ${event.hotspot.x}%; top: ${event.hotspot.y}%; width: ${event.hotspot.width}%; height: ${event.hotspot.height}%;"
+                 data-url="${event.url}"
+                 data-headline="${escapeHtml(event.title)}"
+                 data-source="${escapeHtml(event.source)}"
+                 data-index="${idx}">
+            </div>
+          `).join('')}
+        </div>
+      `;
+      
+      mainContent.innerHTML = html;
+      
+      const tooltip = document.getElementById('newsTooltip');
+      const tooltipContent = document.getElementById('tooltipContent');
+      
+      document.querySelectorAll('.hotspot').forEach(hotspot => {
+        hotspot.addEventListener('mouseenter', (e) => {
+          const headline = hotspot.dataset.headline;
+          const source = hotspot.dataset.source;
+          
+          tooltipContent.innerHTML = `
+            <div class="headline">${headline}</div>
+            <div class="source-badge">
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
+                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
+              </svg>
+              ${source}
+            </div>
+            <div class="click-hint">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+              Click to read full article
+            </div>
+          `;
+          
+          positionTooltip(e.target, tooltip);
+          tooltip.classList.add('show');
+        });
+        
+        hotspot.addEventListener('mouseleave', () => {
+          tooltip.classList.remove('show');
+        });
+        
+        hotspot.addEventListener('click', () => {
+          trackClick(hotspot.dataset.headline);
+          window.open(hotspot.dataset.url, '_blank');
+        });
+      });
+      
+      // Fullscreen on F key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'f' || e.key === 'F') {
+          const img = document.querySelector('.image-container');
+          if (img.requestFullscreen) {
+            img.requestFullscreen();
+          }
+        }
+      });
+    }
+
+    function positionTooltip(hotspot, tooltip) {
+      const rect = hotspot.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      
+      let top = rect.bottom + 12;
+      let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+      
+      // Adjust if off screen
+      if (left < 10) left = 10;
+      if (left + tooltipRect.width > window.innerWidth - 10) {
+        left = window.innerWidth - tooltipRect.width - 10;
+      }
+      
+      if (top + tooltipRect.height > window.innerHeight - 20) {
+        top = rect.top - tooltipRect.height - 12;
+      }
+      
+      tooltip.style.top = `${top}px`;
+      tooltip.style.left = `${left}px`;
+    }
+
+    async function showFallback() {
+      try {
+        const response = await fetch('./api/news');
+        const { events, lastUpdate, totalStories } = await response.json();
+        const topEvents = events.slice(0, 10);
+        
+        const mainContent = document.getElementById('mainContent');
+        mainContent.innerHTML = `
+          <div class="fade-in">
+            <div class="text-center mb-8 text-gray-400">
+              <p class="text-lg">Showing latest ${topEvents.length} top stories</p>
+              <p class="text-sm mt-2">Daily visual summary generating soon...</p>
+            </div>
+            ${topEvents.map((event, i) => `
+              <div class="news-card fade-in" style="animation-delay: ${i * 0.05}s">
+                <div class="news-card-title">${escapeHtml(event.title)}</div>
+                <div class="news-card-digest">${escapeHtml(event.digest)}</div>
+                <div class="sources-list">
+                  ${event.sources.slice(0, 3).map(s => `
+                    <a href="${s.url}" target="_blank" class="source-tag" onclick="trackClick('${escapeHtml(event.title)}')">
+                      ${escapeHtml(s.name)}
+                    </a>
+                  `).join('')}
+                  ${event.sources.length > 3 ? `<span class="source-tag">+${event.sources.length - 3} more</span>` : ''}
+                </div>
+                <div class="recency-tag">${event.recency || 'Recent'} • ${event.score} source${event.score > 1 ? 's' : ''}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+        updateMetadata();
+        document.getElementById('statusFooter').style.display = 'block';
+      } catch (err) {
+        console.error('Error loading fallback:', err);
+      }
+    }
+
+    function updateMetadata() {
+      fetch('./api/news')
+        .then(r => r.json())
+        .then(data => {
+          const lastUpdate = new Date(data.lastUpdate);
+          const now = new Date();
+          const diff = Math.floor((now - lastUpdate) / 60000);
+          
+          let freshness = 'Updated moments ago';
+          if (diff > 60) freshness = `Updated ${Math.floor(diff / 60)}h ago`;
+          else if (diff > 1) freshness = `Updated ${diff}m ago`;
+          
+          document.getElementById('lastUpdate').textContent = lastUpdate.toLocaleTimeString();
+          document.getElementById('eventCount').textContent = data.events.length;
+          document.getElementById('dataFreshness').textContent = freshness;
+          document.getElementById('sourceCount').textContent = `${data.totalStories} stories from ${data.activeSources || 15}`;
+        });
+    }
+
+    function trackClick(headline) {
+      fetch('./api/track-click', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          eventTitle: headline,
+          timestamp: new Date().toISOString()
+        })
+      }).catch(err => console.log('Analytics tracking failed:', err));
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Auto-refresh every 5 minutes
+    setInterval(() => {
+      loadDailyImage();
+      updateMetadata();
+    }, 5 * 60 * 1000);
+
+    // Load on page load
+    loadDailyImage();
+  </script>
+</body>
+</html>
