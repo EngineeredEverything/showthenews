@@ -1,0 +1,53 @@
+{
+  "date": "2026-02",
+  "region": "global",
+  "type": "monthly",
+  "generatedAt": "2026-02-19T08:17:55.939Z",
+  "stories": [
+    {
+      "title": "Eight skiers found dead after California avalanche",
+      "url": "https://www.bbc.com/news/articles/cvg19dp4vxgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "summary": "Fifteen skiers went missing on Tuesday following a massive avalanche in California's Lake Tahoe region. One person remains missing but is presumed dead."
+    },
+    {
+      "title": "Trump says UK’s Starmer making ‘a big mistake’ with Chagos Islands deal",
+      "url": "https://www.aljazeera.com/news/2026/2/18/trump-says-uks-starmer-big-mistake-diego-garcia-lease?traffic_source=rss",
+      "source": "Al Jazeera",
+      "summary": "The US president warned the military base on Diego Garcia may be needed to respond to possible attack from Iran."
+    },
+    {
+      "title": "Billionaire Les Wexner tells US lawmakers he was 'naive' and 'conned' by Epstein",
+      "url": "https://www.bbc.com/news/articles/cy57rrrpvg7o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "summary": "Testifying before Congress, the former CEO of Victoria's Secret lingerie brand accused Epstein of stealing \"vast sums\" of money from his family."
+    }
+  ],
+  "imageUrl": "/images/global/monthly/2026-02.png",
+  "hotspots": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 0,
+      "label": "Panel 1"
+    },
+    {
+      "x": 33,
+      "y": 0,
+      "width": 34,
+      "height": 100,
+      "storyIndex": 1,
+      "label": "Panel 2"
+    },
+    {
+      "x": 67,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 2,
+      "label": "Panel 3"
+    }
+  ]
+}

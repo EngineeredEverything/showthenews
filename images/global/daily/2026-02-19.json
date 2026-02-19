@@ -1,0 +1,54 @@
+{
+  "date": "2026-02-19",
+  "region": "global",
+  "generatedAt": "2026-02-19T04:06:45.136Z",
+  "stories": [
+    {
+      "title": "Eight skiers found dead after California avalanche",
+      "url": "https://www.bbc.com/news/articles/cvg19dp4vxgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "summary": "Fifteen skiers went missing on Tuesday following a massive avalanche in California's Lake Tahoe region. One person remains missing but is presumed dead."
+    },
+    {
+      "title": "Trump says UK’s Starmer making ‘a big mistake’ with Chagos Islands deal",
+      "url": "https://www.aljazeera.com/news/2026/2/18/trump-says-uks-starmer-big-mistake-diego-garcia-lease?traffic_source=rss",
+      "source": "Al Jazeera",
+      "summary": "The US president warned the military base on Diego Garcia may be needed to respond to possible attack from Iran."
+    },
+    {
+      "title": "Billionaire Les Wexner tells US lawmakers he was 'naive' and 'conned' by Epstein",
+      "url": "https://www.bbc.com/news/articles/cy57rrrpvg7o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "summary": "Testifying before Congress, the former CEO of Victoria's Secret lingerie brand accused Epstein of stealing \"vast sums\" of money from his family."
+    }
+  ],
+  "prompt": "Editorial news illustration divided into exactly 3 equal vertical panels side by side. Panel 1: Eight skiers found dead after California avalanche. Panel 2: Trump says UKs Starmer making a big mistake with Chagos Islands deal. Panel 3: Billionaire Les Wexner tells US lawmakers he was naive and conned by Epstein. Style: bold, cinematic, modern editorial magazine cover art, rich colors, dramatic lighting, clean composition, professional photojournalism aesthetic. Each panel has a distinct scene. No text, no words, no letters, no captions, no overlays of any kind.",
+  "imageUrl": "/images/global/daily/2026-02-19.png",
+  "originalUrl": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Kcex6y3Lw00sgNgN6gPGTzJz/user-evuibqmv7FNZprXRgIFuDDSm/img-eg8EkbJCVaPpolQWwiu0tChE.png?st=2026-02-19T03%3A06%3A44Z&se=2026-02-19T05%3A06%3A44Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=8b33a531-2df9-46a3-bc02-d4b1430a422c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-19T00%3A38%3A49Z&ske=2026-02-20T00%3A38%3A49Z&sks=b&skv=2026-02-06&sig=kg8QgAlZLCKUk%2BAzKVt2Piy8CmSAlll1WGZBELqdVK0%3D",
+  "hotspots": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 0,
+      "label": "Panel 1"
+    },
+    {
+      "x": 33,
+      "y": 0,
+      "width": 34,
+      "height": 100,
+      "storyIndex": 1,
+      "label": "Panel 2"
+    },
+    {
+      "x": 67,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 2,
+      "label": "Panel 3"
+    }
+  ]
+}

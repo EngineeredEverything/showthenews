@@ -1,0 +1,53 @@
+{
+  "date": "2026-02",
+  "region": "uk",
+  "type": "monthly",
+  "generatedAt": "2026-02-19T08:16:46.101Z",
+  "stories": [
+    {
+      "title": "8 backcountry skiers found dead and 1 still missing after California avalanche",
+      "url": "https://www.npr.org/2026/02/18/nx-s1-5718550/backcountry-skiers-still-missing-california-avalanche",
+      "source": "NPR",
+      "summary": "Authorities say the bodies of eight backcountry skiers have been found and one remains missing after an avalanche near Lake Tahoe in California. Six others were found alive."
+    },
+    {
+      "title": "Trump says UK’s Starmer making ‘a big mistake’ with Chagos Islands deal",
+      "url": "https://www.aljazeera.com/news/2026/2/18/trump-says-uks-starmer-big-mistake-diego-garcia-lease?traffic_source=rss",
+      "source": "Al Jazeera",
+      "summary": "The US president warned the military base on Diego Garcia may be needed to respond to possible attack from Iran."
+    },
+    {
+      "title": "WATCH:  U.S.-mediated Ukraine-Russia peace talks in Geneva end after just two hours",
+      "url": "https://abcnews.com/International/video/us-mediated-ukraine-russia-peace-talks-geneva-end-130278545",
+      "source": "ABC News",
+      "summary": "ABC News' Patrick Reevell reports that there is still a \"fundamental gap between the two sides over territory,\" specifically Ukraine's eastern Donbas region."
+    }
+  ],
+  "imageUrl": "/images/uk/monthly/2026-02.png",
+  "hotspots": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 0,
+      "label": "Panel 1"
+    },
+    {
+      "x": 33,
+      "y": 0,
+      "width": 34,
+      "height": 100,
+      "storyIndex": 1,
+      "label": "Panel 2"
+    },
+    {
+      "x": 67,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 2,
+      "label": "Panel 3"
+    }
+  ]
+}

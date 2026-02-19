@@ -1,0 +1,54 @@
+{
+  "date": "2026-02-19",
+  "region": "uk",
+  "generatedAt": "2026-02-19T06:00:23.723Z",
+  "stories": [
+    {
+      "title": "8 backcountry skiers found dead and 1 still missing after California avalanche",
+      "url": "https://www.npr.org/2026/02/18/nx-s1-5718550/backcountry-skiers-still-missing-california-avalanche",
+      "source": "NPR",
+      "summary": "Authorities say the bodies of eight backcountry skiers have been found and one remains missing after an avalanche near Lake Tahoe in California. Six others were found alive."
+    },
+    {
+      "title": "Trump says UK’s Starmer making ‘a big mistake’ with Chagos Islands deal",
+      "url": "https://www.aljazeera.com/news/2026/2/18/trump-says-uks-starmer-big-mistake-diego-garcia-lease?traffic_source=rss",
+      "source": "Al Jazeera",
+      "summary": "The US president warned the military base on Diego Garcia may be needed to respond to possible attack from Iran."
+    },
+    {
+      "title": "WATCH:  U.S.-mediated Ukraine-Russia peace talks in Geneva end after just two hours",
+      "url": "https://abcnews.com/International/video/us-mediated-ukraine-russia-peace-talks-geneva-end-130278545",
+      "source": "ABC News",
+      "summary": "ABC News' Patrick Reevell reports that there is still a \"fundamental gap between the two sides over territory,\" specifically Ukraine's eastern Donbas region."
+    }
+  ],
+  "prompt": "Editorial news magazine illustration divided into exactly 3 equal vertical panels side by side. Panel 1: editorial illustration representing: 8 backcountry skiers found development and 1 still missing after Calif. Panel 2: editorial illustration representing: Trump says UK s Starmer making a big mistake with Chagos Islands deal. Panel 3: editorial illustration representing: WATCH U.S.-mediated Ukraine-Russia peace talks in Geneva end after jus. Style: bold, cinematic, modern editorial magazine cover art, rich colors, dramatic lighting, clean composition, professional photojournalism aesthetic. Each panel has a distinct scene. No text, no words, no letters, no captions, no overlays of any kind.",
+  "imageUrl": "/images/uk/daily/2026-02-19.png",
+  "originalUrl": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Kcex6y3Lw00sgNgN6gPGTzJz/user-evuibqmv7FNZprXRgIFuDDSm/img-KhAXXJUNjl3ZOinOnRRaoPp1.png?st=2026-02-19T05%3A00%3A22Z&se=2026-02-19T07%3A00%3A22Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=8b33a531-2df9-46a3-bc02-d4b1430a422c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-19T05%3A31%3A20Z&ske=2026-02-20T05%3A31%3A20Z&sks=b&skv=2026-02-06&sig=SzLcjsNqFcw/MDHbhwCaO2Q5HBNXztpiJOxL1zGrBwg%3D",
+  "hotspots": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 0,
+      "label": "Panel 1"
+    },
+    {
+      "x": 33,
+      "y": 0,
+      "width": 34,
+      "height": 100,
+      "storyIndex": 1,
+      "label": "Panel 2"
+    },
+    {
+      "x": 67,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 2,
+      "label": "Panel 3"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "date": "2026-02-19",
+  "region": "europe",
+  "generatedAt": "2026-02-19T04:07:30.567Z",
+  "stories": [
+    {
+      "title": "Eight skiers found dead after California avalanche",
+      "url": "https://www.bbc.com/news/articles/cvg19dp4vxgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "summary": "Fifteen skiers went missing on Tuesday following a massive avalanche in California's Lake Tahoe region. One person remains missing but is presumed dead."
+    },
+    {
+      "title": "Trump says UK’s Starmer making ‘a big mistake’ with Chagos Islands deal",
+      "url": "https://www.aljazeera.com/news/2026/2/18/trump-says-uks-starmer-big-mistake-diego-garcia-lease?traffic_source=rss",
+      "source": "Al Jazeera",
+      "summary": "The US president warned the military base on Diego Garcia may be needed to respond to possible attack from Iran."
+    },
+    {
+      "title": "Meta’s Zuckerberg pushes back on social media youth addiction claims",
+      "url": "https://www.aljazeera.com/economy/2026/2/18/metas-zuckerberg-pushes-back-on-social-media-youth-addiction-claims?traffic_source=rss",
+      "source": "Al Jazeera",
+      "summary": "In a Los Angeles court, the Meta CEO was questioned about whether Instagram’s design contributed to addictive behavior."
+    }
+  ],
+  "prompt": "Editorial news illustration divided into exactly 3 equal vertical panels side by side. Panel 1: Eight skiers found dead after California avalanche. Panel 2: Trump says UKs Starmer making a big mistake with Chagos Islands deal. Panel 3: Metas Zuckerberg pushes back on social media youth addiction claims. Style: bold, cinematic, modern editorial magazine cover art, rich colors, dramatic lighting, clean composition, professional photojournalism aesthetic. Each panel has a distinct scene. No text, no words, no letters, no captions, no overlays of any kind.",
+  "imageUrl": "/images/europe/daily/2026-02-19.png",
+  "originalUrl": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Kcex6y3Lw00sgNgN6gPGTzJz/user-evuibqmv7FNZprXRgIFuDDSm/img-WiH1Jmjm0zkbpbAe4w2ql9HA.png?st=2026-02-19T03%3A07%3A29Z&se=2026-02-19T05%3A07%3A29Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=9346e9b9-5d29-4d37-a0a9-c6f95f09f79d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-18T06%3A51%3A55Z&ske=2026-02-19T06%3A51%3A55Z&sks=b&skv=2026-02-06&sig=EQuyGL4Wq9Nz%2B5wPgmSBDWN0IIVxhhwsyloQGD090qk%3D",
+  "hotspots": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 0,
+      "label": "Panel 1"
+    },
+    {
+      "x": 33,
+      "y": 0,
+      "width": 34,
+      "height": 100,
+      "storyIndex": 1,
+      "label": "Panel 2"
+    },
+    {
+      "x": 67,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 2,
+      "label": "Panel 3"
+    }
+  ]
+}

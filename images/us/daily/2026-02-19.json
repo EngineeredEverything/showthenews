@@ -1,0 +1,54 @@
+{
+  "date": "2026-02-19",
+  "region": "us",
+  "generatedAt": "2026-02-19T04:06:49.497Z",
+  "stories": [
+    {
+      "title": "Eight skiers found dead after California avalanche",
+      "url": "https://www.bbc.com/news/articles/cvg19dp4vxgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC",
+      "summary": "Fifteen skiers went missing on Tuesday following a massive avalanche in California's Lake Tahoe region. One person remains missing but is presumed dead."
+    },
+    {
+      "title": "Meta’s Zuckerberg pushes back on social media youth addiction claims",
+      "url": "https://www.aljazeera.com/economy/2026/2/18/metas-zuckerberg-pushes-back-on-social-media-youth-addiction-claims?traffic_source=rss",
+      "source": "Al Jazeera",
+      "summary": "In a Los Angeles court, the Meta CEO was questioned about whether Instagram’s design contributed to addictive behavior."
+    },
+    {
+      "title": "US is withdrawing all 1,000 troops from Syria: WSJ report",
+      "url": "https://www.aljazeera.com/news/2026/2/18/us-is-withdrawing-all-1000-troops-from-syria-wsj-report?traffic_source=rss",
+      "source": "Al Jazeera",
+      "summary": "The report says US officials expect troops to withdraw from remaining positions within two months."
+    }
+  ],
+  "prompt": "Editorial news illustration divided into exactly 3 equal vertical panels side by side. Panel 1: Eight skiers found dead after California avalanche. Panel 2: Metas Zuckerberg pushes back on social media youth addiction claims. Panel 3: US is withdrawing all 1,000 troops from Syria WSJ report. Style: bold, cinematic, modern editorial magazine cover art, rich colors, dramatic lighting, clean composition, professional photojournalism aesthetic. Each panel has a distinct scene. No text, no words, no letters, no captions, no overlays of any kind.",
+  "imageUrl": "/images/us/daily/2026-02-19.png",
+  "originalUrl": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Kcex6y3Lw00sgNgN6gPGTzJz/user-evuibqmv7FNZprXRgIFuDDSm/img-TlZLeaBjo5cLn1uZS31tIITZ.png?st=2026-02-19T03%3A06%3A49Z&se=2026-02-19T05%3A06%3A49Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=13da7400-b3f7-4f8c-9cba-908fecbd114c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-19T01%3A01%3A11Z&ske=2026-02-20T01%3A01%3A11Z&sks=b&skv=2026-02-06&sig=3aGCBx5dYyWuYGexezU5T1r/Ee8VorL0L6A6tVn934E%3D",
+  "hotspots": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 0,
+      "label": "Panel 1"
+    },
+    {
+      "x": 33,
+      "y": 0,
+      "width": 34,
+      "height": 100,
+      "storyIndex": 1,
+      "label": "Panel 2"
+    },
+    {
+      "x": 67,
+      "y": 0,
+      "width": 33,
+      "height": 100,
+      "storyIndex": 2,
+      "label": "Panel 3"
+    }
+  ]
+}

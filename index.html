@@ -1,727 +1,1032 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShowTheNews - AI-Powered News Compression | Glanceable News Intelligence</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="ShowTheNews is an AI news aggregator that curates and summarizes 150+ stories into glanceable news digests. Get automated news summaries and personalized news feeds powered by AI journalism technology.">
-  <meta name="keywords" content="AI news aggregator, curated news digest, automated news summary, AI journalism, personalized news feed, news compression, ambient display, B2B news, office news display">
-  <meta name="author" content="ShowTheNews">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://showthenews.com/">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://showthenews.com/">
-  <meta property="og:title" content="ShowTheNews - AI News Aggregator & Automated News Summaries">
-  <meta property="og:description" content="AI-powered news curation: 150+ stories compressed into glanceable digests. Get situational awareness in seconds.">
-  <meta property="og:image" content="https://showthenews.com/images/og-image.png">
-  <meta property="og:site_name" content="ShowTheNews">
-  
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://showthenews.com/">
-  <meta name="twitter:title" content="ShowTheNews - AI News Aggregator">
-  <meta name="twitter:description" content="AI-powered news curation: 150+ stories into glanceable digests. Perfect for B2B ambient displays.">
-  <meta name="twitter:image" content="https://showthenews.com/images/twitter-card.png">
-  
-  <!-- Structured Data: NewsMediaOrganization -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "NewsMediaOrganization",
-    "name": "ShowTheNews",
-    "url": "https://showthenews.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://showthenews.com/images/logo.png"
-    },
-    "description": "AI-powered news aggregation platform that curates and summarizes global news into glanceable situational awareness digests",
-    "sameAs": [],
-    "publishingPrinciples": "https://showthenews.com/#faq"
-  }
-  </script>
-  
-  <!-- Structured Data: WebApplication -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "ShowTheNews",
-    "description": "AI news aggregator that compresses 150+ stories into curated news digests with automated summaries",
-    "url": "https://showthenews.com/",
-    "applicationCategory": "NewsApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "4.99",
-      "priceCurrency": "USD",
-      "description": "ShowTheNews Pro - Premium news curation"
-    },
-    "author": {
-      "@type": "Organization",
-      "name": "ShowTheNews",
-      "url": "https://showthenews.com"
-    }
-  }
-  </script>
-  
-  <!-- Structured Data: FAQ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is ShowTheNews?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ShowTheNews is an AI-powered news aggregator that collects stories from 150+ trusted sources and compresses them into glanceable news digests. Our AI journalism technology automatically curates, clusters, and summarizes the most important stories so you get situational awareness in seconds, not hours."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does AI news curation work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Our AI analyzes news from hundreds of sources in real-time, identifying related stories and clustering them into unified events. It then generates concise summaries that capture the key facts, eliminating redundancy and giving you the full picture without reading dozens of articles. The system updates continuously throughout the day."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Where do you get your news sources?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ShowTheNews aggregates from 150+ verified news sources including major wire services (AP, Reuters), national newspapers, international outlets, and specialized industry publications. We prioritize credible, established journalism to ensure accuracy and reliability in our automated summaries."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How much does ShowTheNews cost?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ShowTheNews offers a free tier with access to our live news wall. ShowTheNews Pro is available for $4.99/month and includes early access to breaking news, deeper analysis, custom topic alerts, and ad-free browsing. B2B ambient display licenses are available for offices and coworking spaces."
-        }
-      }
-    ]
-  }
-  </script>
-  
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ShowTheNews — A visual-first news platform. See today's top headlines as AI-generated editorial images." />
+  <title>ShowTheNews — Visual News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: #030712;
-      color: white;
-      min-height: 100vh;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --border: #1e1e2e;
+      --accent: #6366f1;
+      --accent2: #8b5cf6;
+      --text: #f0f0f8;
+      --muted: #6b7280;
+      --panel-bg: rgba(12, 12, 22, 0.95);
     }
-    
-    .image-container {
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 10, 15, 0.96);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .logo-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+
+    .logo-text span {
+      color: var(--accent);
+    }
+
+    /* Region selector */
+    .region-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.4rem 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .region-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    .region-btn:hover { color: var(--text); background: var(--border); }
+    .region-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Live indicator */
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    /* ── Main image section ── */
+    .image-section {
       position: relative;
       width: 100%;
-      cursor: pointer;
-      border-radius: 12px;
+      height: 60vh;
+      min-height: 400px;
+      max-height: 700px;
       overflow: hidden;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
     }
-    
-    .news-image {
+
+    .editorial-image {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       display: block;
+      transition: opacity 0.5s ease;
     }
-    
+
+    .editorial-image.loading { opacity: 0; }
+    .editorial-image.loaded { opacity: 1; }
+
+    /* Gradient overlay at bottom */
+    .image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      background: linear-gradient(to bottom, transparent, rgba(10,10,15,0.85));
+      pointer-events: none;
+    }
+
+    /* Hotspot zones */
+    .hotspot-container {
+      position: absolute;
+      inset: 0;
+    }
+
     .hotspot {
       position: absolute;
-      border: 2px solid transparent;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      height: 100%;
       cursor: pointer;
-      border-radius: 8px;
+      transition: background 0.2s;
+      border-right: 1px solid rgba(255,255,255,0.05);
     }
-    
-    /* Debug mode - uncomment to see hotspot boundaries */
-    /* .hotspot { border: 2px dashed rgba(96, 165, 250, 0.3) !important; } */
-    
-    .hotspot:hover {
-      border-color: rgba(96, 165, 250, 0.9);
-      background: rgba(96, 165, 250, 0.2);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
-      transform: scale(1.02);
-    }
-    
-    .tooltip {
-      position: fixed;
-      background: rgba(0, 0, 0, 0.95);
-      color: white;
-      padding: 16px 20px;
-      border-radius: 12px;
-      font-size: 15px;
-      pointer-events: none;
-      opacity: 0;
-      transition: all 0.3s ease;
-      z-index: 1000;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-      max-width: 400px;
-      min-width: 200px;
-      border: 1px solid rgba(96, 165, 250, 0.3);
-      white-space: normal;
-    }
-    
-    .tooltip.show {
-      opacity: 1;
-    }
-    
-    .tooltip-arrow {
+
+    .hotspot:last-child { border-right: none; }
+
+    .hotspot:hover { background: rgba(99, 102, 241, 0.12); }
+    .hotspot.active { background: rgba(99, 102, 241, 0.2); }
+
+    /* Hotspot hover label */
+    .hotspot-label {
       position: absolute;
-      width: 0;
-      height: 0;
-      border: 8px solid transparent;
-    }
-    
-    .tooltip-arrow.top {
-      bottom: 100%;
+      bottom: 1.5rem;
       left: 50%;
       transform: translateX(-50%);
-      border-bottom-color: rgba(0, 0, 0, 0.95);
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      max-width: 90%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
     }
-    
-    .tooltip-arrow.bottom {
-      top: 100%;
+
+    .hotspot:hover .hotspot-label { opacity: 1; }
+
+    /* Panel number badge */
+    .hotspot-num {
+      position: absolute;
+      top: 1.2rem;
       left: 50%;
       transform: translateX(-50%);
-      border-top-color: rgba(0, 0, 0, 0.95);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-family: 'Space Grotesk', sans-serif;
     }
-    
-    .headline {
+
+    .hotspot:hover .hotspot-num { opacity: 1; }
+
+    /* Loading state */
+    .loading-state {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      background: var(--surface);
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-text {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .loading-sub {
+      font-size: 0.75rem;
+      color: #4b5563;
+      margin-top: 0.3rem;
+    }
+
+    /* Fallback news grid */
+    .fallback-grid {
+      display: none;
+      padding: 2rem;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .fallback-grid.visible { display: grid; }
+
+    .fallback-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .fallback-card h3 { font-size: 0.9rem; line-height: 1.4; color: var(--text); margin-bottom: 0.5rem; }
+    .fallback-card p { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── Story panel ── */
+    .story-panel {
+      background: var(--panel-bg);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s;
+      backdrop-filter: blur(12px);
+    }
+
+    .story-panel.open {
+      max-height: 320px;
+    }
+
+    .story-panel-inner {
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .story-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .story-summary {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .story-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .story-source {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .story-source::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      border-radius: 7px;
+      transition: all 0.2s;
+    }
+
+    .read-link:hover {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: var(--accent);
+      color: #a5b4fc;
+    }
+
+    .panel-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.3rem;
+      padding: 0.3rem;
+      line-height: 1;
+      transition: color 0.2s;
+      align-self: start;
+    }
+
+    .panel-close:hover { color: var(--text); }
+
+    .panel-indicators {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .panel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .panel-dot.active { background: var(--accent); }
+
+    /* ── Archive row ── */
+    .archive-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .archive-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-family: 'Space Grotesk', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-right: 0.5rem;
+    }
+
+    .archive-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      padding: 0.45rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .archive-btn:hover { color: var(--text); border-color: #374151; }
+    .archive-btn.active {
+      color: #fff;
+      border-color: var(--accent);
+      background: rgba(99, 102, 241, 0.15);
+    }
+
+    /* ── Live news grid (fallback) ── */
+    .live-grid-section {
+      padding: 2rem;
+      display: none;
+    }
+
+    .live-grid-section.visible { display: block; }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .event-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .event-card:hover {
+      border-color: #374151;
+      transform: translateY(-2px);
+    }
+
+    .event-category {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .event-category.world { color: #60a5fa; }
+    .event-category.tech { color: #34d399; }
+    .event-category.finance { color: #fbbf24; }
+    .event-category.sports { color: #f87171; }
+
+    .event-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
       font-weight: 600;
       line-height: 1.4;
-      margin-bottom: 8px;
+      color: var(--text);
+      margin-bottom: 0.5rem;
     }
-    
-    .source-badge {
-      display: inline-block;
-      background: rgba(59, 130, 246, 0.25);
-      color: #60a5fa;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 12px;
+
+    .event-digest {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
+    }
+
+    .event-sources {
+      font-size: 0.7rem;
+      color: #4b5563;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .score-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: rgba(99, 102, 241, 0.12);
+      color: var(--accent);
+      font-size: 0.65rem;
       font-weight: 600;
-      letter-spacing: 0.3px;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      float: right;
     }
-    
-    .click-hint {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.6);
-      margin-top: 6px;
-      font-style: italic;
-    }
-    
-    .loading-state {
+
+    /* ── Footer ── */
+    footer {
       text-align: center;
-      padding: 120px 20px;
-      color: #9ca3af;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
     }
-    
-    .spinner {
-      border: 3px solid rgba(255, 255, 255, 0.1);
-      border-top-color: #60a5fa;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 20px;
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Date bar ── */
+    .date-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 2rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: 'Space Grotesk', sans-serif;
+      border-bottom: 1px solid var(--border);
     }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      header { padding: 1rem; flex-wrap: wrap; gap: 0.75rem; }
+      .region-selector { order: 3; width: 100%; justify-content: center; }
+      .story-panel-inner { grid-template-columns: 1fr; padding: 1.5rem; }
+      .image-section { height: 50vw; min-height: 280px; }
+      .archive-row { padding: 0.75rem 1rem; }
+      .live-grid-section { padding: 1rem; }
+      .events-grid { grid-template-columns: 1fr; }
     }
-    
-    .fade-in {
-      animation: fadeIn 0.6s ease-in;
+
+    /* Transition for image swap */
+    .image-fade-out { opacity: 0; transition: opacity 0.3s; }
+    .image-fade-in { opacity: 1; transition: opacity 0.5s; }
+
+    /* Error notice */
+    .error-notice {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+      padding: 0.5rem 1rem;
+      border-radius: 7px;
+      font-size: 0.78rem;
+      font-family: 'Space Grotesk', sans-serif;
+      white-space: nowrap;
+      z-index: 10;
     }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Line clamp utilities */
-    .line-clamp-2 {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+
+    /* Selected panel glow */
+    .image-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 0 rgba(99,102,241,0);
+      transition: box-shadow 0.3s;
     }
   </style>
 </head>
-<body class="bg-gray-950 text-white">
-  <div class="container mx-auto px-4 py-8 max-w-7xl">
-    <!-- Header -->
-    <div class="mb-8 border-b border-gray-800 pb-6">
-      <div class="flex justify-between items-center flex-wrap gap-4">
-        <div>
-          <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            📰 ShowTheNews
-          </h1>
-          <p class="text-gray-400 mt-2">Visual news intelligence • Hover to explore • Click to read</p>
-        </div>
-        <div class="text-right">
-          <div class="text-sm text-gray-500" id="lastUpdate">Loading...</div>
-          <div class="text-xs text-gray-600 mt-1">
-            <span id="eventCount">—</span> stories visualized •
-            <a href="./analytics.html" class="text-blue-400 hover:text-blue-300 underline ml-1">📊 Analytics</a> •
-            <a href="./rss.xml" class="text-orange-400 hover:text-orange-300 underline ml-1" title="Subscribe via RSS">📡 RSS</a>
-          </div>
-        </div>
-      </div>
-    </div>
+<body>
 
-    <!-- Category Filter Tabs -->
-    <div class="mb-6" id="categoryTabs" style="display: none;">
-      <div class="flex gap-2 flex-wrap">
-        <button onclick="filterCategory('all')" data-cat="all" class="cat-tab active-tab px-4 py-2 rounded-full text-sm font-semibold border transition-all">
-          🌐 All
-        </button>
-        <button onclick="filterCategory('world')" data-cat="world" class="cat-tab px-4 py-2 rounded-full text-sm font-semibold border transition-all">
-          🗞️ World
-        </button>
-        <button onclick="filterCategory('tech')" data-cat="tech" class="cat-tab px-4 py-2 rounded-full text-sm font-semibold border transition-all">
-          💻 Tech
-        </button>
-        <button onclick="filterCategory('finance')" data-cat="finance" class="cat-tab px-4 py-2 rounded-full text-sm font-semibold border transition-all">
-          📈 Finance
-        </button>
-        <button onclick="filterCategory('sports')" data-cat="sports" class="cat-tab px-4 py-2 rounded-full text-sm font-semibold border transition-all">
-          🏆 Sports
-        </button>
-      </div>
-    </div>
+<!-- ── Header ── -->
+<header>
+  <a href="/" class="logo">
+    <div class="logo-icon">📰</div>
+    <span class="logo-text">Show<span>The</span>News</span>
+  </a>
 
-    <style>
-      .cat-tab {
-        background: rgba(255,255,255,0.05);
-        border-color: rgba(255,255,255,0.1);
-        color: #9ca3af;
-      }
-      .cat-tab:hover {
-        background: rgba(96,165,250,0.1);
-        border-color: rgba(96,165,250,0.4);
-        color: #60a5fa;
-      }
-      .cat-tab.active-tab {
-        background: rgba(96,165,250,0.2);
-        border-color: rgba(96,165,250,0.6);
-        color: #93c5fd;
-      }
-      .news-card { transition: all 0.3s ease; }
-      .news-card.hidden-card { display: none !important; }
-    </style>
+  <div class="region-selector" role="tablist" aria-label="Select region">
+    <button class="region-btn active" data-region="global" role="tab">🌍 Global</button>
+    <button class="region-btn" data-region="us" role="tab">🇺🇸 US</button>
+    <button class="region-btn" data-region="uk" role="tab">🇬🇧 UK</button>
+    <button class="region-btn" data-region="europe" role="tab">🇪🇺 Europe</button>
+    <button class="region-btn" data-region="asia" role="tab">🌏 Asia</button>
+  </div>
 
-    <!-- Main Content -->
-    <div id="mainContent">
-      <div class="loading-state">
-        <div class="spinner"></div>
-        <div>Generating today's visual news summary...</div>
-      </div>
-    </div>
-    
-    <!-- Instructions -->
-    <div class="text-center mt-8 text-gray-500 text-sm" id="instructions" style="display: none;">
-      <strong class="text-blue-400">Click</strong> any story to read the full article • 
-      <strong class="text-blue-400">Press F</strong> for fullscreen
-      <button onclick="toggleDebug()" class="ml-4 text-xs text-gray-600 hover:text-blue-400" style="text-decoration: underline;">
-        Show Hotspot Boundaries
-      </button>
-    </div>
-    
-    <!-- Status Footer (B2B Display) -->
-    <div class="fixed bottom-4 right-4 bg-gray-900/80 backdrop-blur px-4 py-2 rounded-lg border border-gray-800 text-xs text-gray-400" id="statusFooter" style="display: none;">
-      <div class="flex items-center gap-3">
-        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-        <span id="dataFreshness">Updated moments ago</span>
-        <span class="text-gray-600">•</span>
-        <span id="sourceCount">—</span> sources
-      </div>
+  <div class="live-badge">
+    <div class="live-dot"></div>
+    <span id="last-update">Live</span>
+  </div>
+</header>
+
+<!-- Date bar -->
+<div class="date-bar">
+  <span id="current-date"></span>
+  <span id="story-count"></span>
+</div>
+
+<!-- ── Main image section ── -->
+<section class="image-section" id="image-section" aria-label="Today's news image">
+  <!-- Loading state -->
+  <div class="loading-state" id="loading-state">
+    <div class="spinner"></div>
+    <div>
+      <div class="loading-text">Generating today's editorial image…</div>
+      <div class="loading-sub">This takes about 15 seconds</div>
     </div>
   </div>
 
-  <script>
-    let dailyImageData = null;
+  <!-- Actual image (hidden until loaded) -->
+  <img class="editorial-image loading" id="editorial-image" alt="Today's editorial news illustration" />
 
-    async function loadDailyImage() {
-      try {
-        console.log('Fetching daily image...');
-        const response = await fetch('./api/daily-image');
-        const data = await response.json();
-        
-        if (data.error) {
-          console.log('No daily image yet, showing fallback');
-          showFallback();
-          return;
-        }
-        
-        dailyImageData = data;
-        renderDailyImage();
-        document.getElementById('instructions').style.display = 'block';
-        
-      } catch (err) {
-        console.error('Error loading daily image:', err);
-        showFallback();
-      }
-    }
+  <!-- Gradient overlay -->
+  <div class="image-overlay"></div>
 
-    function renderDailyImage() {
-      const mainContent = document.getElementById('mainContent');
-      
-      // Fix image path - remove leading slash for relative path
-      const imagePath = dailyImageData.imageUrl.startsWith('/') 
-        ? dailyImageData.imageUrl.substring(1) 
-        : dailyImageData.imageUrl;
-      
-      const html = `
-        <div class="image-container fade-in" style="max-width: 1792px; margin: 0 auto;">
-          <img src="${imagePath}" alt="Today's News" class="news-image" id="newsImage">
-          ${dailyImageData.events.map((event, idx) => `
-            <div class="hotspot" 
-                 style="left: ${event.hotspot.x}%; top: ${event.hotspot.y}%; width: ${event.hotspot.width}%; height: ${event.hotspot.height}%;"
-                 data-url="${event.url}"
-                 data-headline="${event.title.replace(/"/g, '&quot;')}"
-                 data-source="${event.source}"
-                 data-index="${idx}">
-            </div>
-          `).join('')}
-        </div>
-        
-        <!-- Single tooltip that follows mouse -->
-        <div class="tooltip" id="newsTooltip">
-          <div id="tooltipContent"></div>
-          <div class="tooltip-arrow bottom" id="tooltipArrow"></div>
-        </div>
-      `;
-      
-      mainContent.innerHTML = html;
-      
-      const tooltip = document.getElementById('newsTooltip');
-      const tooltipContent = document.getElementById('tooltipContent');
-      const tooltipArrow = document.getElementById('tooltipArrow');
-      
-      // Add hover and click handlers
-      document.querySelectorAll('.hotspot').forEach(hotspot => {
-        // Hover to show tooltip
-        hotspot.addEventListener('mouseenter', (e) => {
-          const headline = hotspot.dataset.headline;
-          const source = hotspot.dataset.source;
-          
-          tooltipContent.innerHTML = `
-            <div class="headline">${headline}</div>
-            <div class="source-badge">${source}</div>
-            <div class="click-hint">Click to read article →</div>
-          `;
-          
-          positionTooltip(hotspot, tooltip, tooltipArrow);
-          tooltip.classList.add('show');
-        });
-        
-        hotspot.addEventListener('mouseleave', () => {
-          tooltip.classList.remove('show');
-        });
-        
-        // Click to open article
-        hotspot.addEventListener('click', () => {
-          const headline = hotspot.dataset.headline;
-          
-          // Track click analytics
-          trackClick(headline);
-          
-          window.open(hotspot.dataset.url, '_blank');
-        });
-      });
-      
-      // Position tooltip smartly to avoid edges
-      function positionTooltip(hotspot, tooltip, arrow) {
-        const rect = hotspot.getBoundingClientRect();
-        const tooltipRect = tooltip.getBoundingClientRect();
-        
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-        
-        let top, left;
-        
-        // Default: show above hotspot
-        top = rect.top - tooltipRect.height - 15;
-        left = centerX - tooltipRect.width / 2;
-        
-        // If tooltip goes off top, show below instead
-        if (top < 10) {
-          top = rect.bottom + 15;
-          arrow.className = 'tooltip-arrow top';
-        } else {
-          arrow.className = 'tooltip-arrow bottom';
-        }
-        
-        // Keep tooltip within horizontal bounds
-        if (left < 10) {
-          left = 10;
-        } else if (left + tooltipRect.width > viewportWidth - 10) {
-          left = viewportWidth - tooltipRect.width - 10;
-        }
-        
-        tooltip.style.top = top + 'px';
-        tooltip.style.left = left + 'px';
-      }
-      
-      // Update stats
-      document.getElementById('eventCount').textContent = dailyImageData.events.length;
-      document.getElementById('lastUpdate').textContent = 
-        'Updated ' + new Date(dailyImageData.generatedAt).toLocaleTimeString();
-    }
-
-    let allEvents = [];
-    let activeCategory = 'all';
-
-    const categoryEmoji = { world: '🗞️', tech: '💻', finance: '📈', sports: '🏆' };
-    const categoryColors = {
-      world:   { bg: 'bg-blue-500/10',   text: 'text-blue-400',   border: 'border-blue-500/20' },
-      tech:    { bg: 'bg-purple-500/10', text: 'text-purple-400', border: 'border-purple-500/20' },
-      finance: { bg: 'bg-green-500/10',  text: 'text-green-400',  border: 'border-green-500/20' },
-      sports:  { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/20' },
-    };
-
-    function filterCategory(cat) {
-      activeCategory = cat;
-
-      // Update tab styles
-      document.querySelectorAll('.cat-tab').forEach(btn => {
-        btn.classList.toggle('active-tab', btn.dataset.cat === cat);
-      });
-
-      // Show/hide cards
-      document.querySelectorAll('.news-card').forEach(card => {
-        const match = cat === 'all' || card.dataset.category === cat;
-        card.classList.toggle('hidden-card', !match);
-      });
-
-      // Show empty state if nothing visible
-      const visible = document.querySelectorAll('.news-card:not(.hidden-card)').length;
-      const empty = document.getElementById('emptyCategory');
-      if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
-    }
-
-    async function showFallback() {
-      const mainContent = document.getElementById('mainContent');
-      
-      try {
-        // Fetch live news events
-        const response = await fetch('./api/news');
-        const data = await response.json();
-        allEvents = data.events || [];
-        
-        // Show live news grid
-        const html = `
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 fade-in" id="newsGrid">
-            ${allEvents.map(event => {
-              const cat = event.category || 'world';
-              const cols = categoryColors[cat] || categoryColors.world;
-              const sourceCount = event.sources ? event.sources.length : 1;
-              return `
-              <div class="news-card bg-gray-900/50 border border-gray-800 rounded-lg p-5 hover:border-blue-500 hover:bg-gray-900/70 transition-all cursor-pointer group"
-                   data-category="${cat}"
-                   onclick="trackClick('${event.title.replace(/'/g, "\\'").replace(/"/g, '&quot;')}'); window.open('${(event.sources && event.sources[0]) ? event.sources[0].url : '#'}', '_blank')">
-                <div class="flex items-center gap-2 mb-2 flex-wrap">
-                  <span class="text-xs px-2 py-0.5 rounded-full font-semibold ${cols.bg} ${cols.text} border ${cols.border}">
-                    ${categoryEmoji[cat] || ''} ${cat.charAt(0).toUpperCase() + cat.slice(1)}
-                  </span>
-                  <span class="text-xs text-gray-500">${sourceCount} source${sourceCount !== 1 ? 's' : ''}</span>
-                  ${event.score >= 3 ? '<span class="text-xs text-red-400 font-semibold">● TRENDING</span>' : ''}
-                </div>
-                <h3 class="text-base font-semibold mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
-                  ${event.title}
-                </h3>
-                <p class="text-sm text-gray-400 mb-3 line-clamp-2">
-                  ${event.digest}
-                </p>
-                <div class="flex flex-wrap gap-1.5">
-                  ${(event.sources || []).slice(0, 3).map(s => `
-                    <span class="text-xs px-2 py-1 bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
-                      ${s.name}
-                    </span>
-                  `).join('')}
-                  ${sourceCount > 3 ? `<span class="text-xs px-2 py-1 text-gray-500">+${sourceCount - 3} more</span>` : ''}
-                </div>
-              </div>`;
-            }).join('')}
-          </div>
-          <div id="emptyCategory" class="text-center py-12 text-gray-500" style="display:none;">
-            <div class="text-4xl mb-3">🔍</div>
-            <div class="text-lg">No stories in this category right now.</div>
-            <div class="text-sm mt-1">Check back soon or try a different tab.</div>
-          </div>
-        `;
-        
-        mainContent.innerHTML = html;
-        
-        // Show category tabs
-        document.getElementById('categoryTabs').style.display = 'block';
-        
-        // Update header stats
-        document.getElementById('eventCount').textContent = allEvents.length;
-        document.getElementById('lastUpdate').textContent = 
-          'Updated ' + new Date(data.lastUpdate).toLocaleTimeString();
-        document.getElementById('instructions').style.display = 'block';
-        
-        // Reapply active filter if needed
-        if (activeCategory !== 'all') filterCategory(activeCategory);
-        
-      } catch (err) {
-        console.error('Error loading news:', err);
-        mainContent.innerHTML = `
-          <div class="text-center py-12 text-gray-500">
-            <div class="text-6xl mb-4">⚠️</div>
-            <div class="text-xl font-semibold mb-2">Unable to Load News</div>
-            <div class="text-sm">Please refresh the page</div>
-          </div>
-        `;
-      }
-    }
-
-    // Debug mode toggle
-    let debugMode = false;
-    window.toggleDebug = function() {
-      debugMode = !debugMode;
-      document.querySelectorAll('.hotspot').forEach(hotspot => {
-        if (debugMode) {
-          hotspot.style.border = '2px dashed rgba(96, 165, 250, 0.6)';
-          hotspot.style.background = 'rgba(96, 165, 250, 0.1)';
-        } else {
-          hotspot.style.border = '2px solid transparent';
-          hotspot.style.background = 'transparent';
-        }
-      });
-      
-      const btn = event.target;
-      btn.textContent = debugMode ? 'Hide Hotspot Boundaries' : 'Show Hotspot Boundaries';
-    };
-    
-    // Load on page load
-    loadDailyImage();
-    
-    // Auto-refresh every 5 minutes
-    setInterval(loadDailyImage, 5 * 60 * 1000);
-    
-    // Fullscreen keyboard shortcut (F key)
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'f' || e.key === 'F') {
-        e.preventDefault();
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen();
-        } else {
-          document.exitFullscreen();
-        }
-      }
-    });
-    
-    // Show/hide cursor in fullscreen
-    let cursorTimeout;
-    document.addEventListener('fullscreenchange', () => {
-      if (document.fullscreenElement) {
-        // Hide cursor after 3 seconds of inactivity in fullscreen
-        document.addEventListener('mousemove', resetCursorTimeout);
-        resetCursorTimeout();
-      } else {
-        document.body.style.cursor = 'default';
-        document.removeEventListener('mousemove', resetCursorTimeout);
-        clearTimeout(cursorTimeout);
-      }
-    });
-    
-    function resetCursorTimeout() {
-      document.body.style.cursor = 'default';
-      clearTimeout(cursorTimeout);
-      cursorTimeout = setTimeout(() => {
-        if (document.fullscreenElement) {
-          document.body.style.cursor = 'none';
-        }
-      }, 3000);
-    }
-    
-    // Track event clicks for analytics
-    async function trackClick(eventTitle) {
-      try {
-        await fetch('./api/track-click', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ eventTitle })
-        });
-        console.log('Tracked click:', eventTitle);
-      } catch (err) {
-        console.error('Click tracking failed:', err);
-      }
-    }
-    
-    // Update status footer with data freshness
-    async function updateStatusFooter() {
-      try {
-        const response = await fetch('./api/news');
-        const data = await response.json();
-        
-        if (data.lastUpdate) {
-          const minutesAgo = Math.floor((Date.now() - new Date(data.lastUpdate)) / 60000);
-          const freshnessText = minutesAgo < 1 ? 'Updated moments ago' :
-                               minutesAgo === 1 ? 'Updated 1 minute ago' :
-                               minutesAgo < 60 ? `Updated ${minutesAgo} minutes ago` :
-                               'Updated over an hour ago';
-          
-          document.getElementById('dataFreshness').textContent = freshnessText;
-          document.getElementById('sourceCount').textContent = `${data.sources.length} sources`;
-          document.getElementById('statusFooter').style.display = 'block';
-        }
-      } catch (err) {
-        console.error('Error updating status:', err);
-      }
-    }
-    
-    updateStatusFooter();
-    setInterval(updateStatusFooter, 60 * 1000); // Update every minute
-  </script>
-
-<!-- FAQ Section -->
-<section id="faq" class="max-w-4xl mx-auto px-6 py-16 border-t border-gray-800">
-  <h2 class="text-3xl font-bold text-center mb-12 text-white">Frequently Asked Questions</h2>
-  
-  <div class="space-y-8">
-    <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
-      <h3 class="text-xl font-semibold text-blue-400 mb-3">What is ShowTheNews?</h3>
-      <p class="text-gray-300 leading-relaxed">ShowTheNews is an AI-powered news aggregator that collects stories from 150+ trusted sources and compresses them into glanceable news digests. Our AI journalism technology automatically curates, clusters, and summarizes the most important stories so you get situational awareness in seconds, not hours.</p>
-    </div>
-    
-    <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
-      <h3 class="text-xl font-semibold text-blue-400 mb-3">How does AI news curation work?</h3>
-      <p class="text-gray-300 leading-relaxed">Our AI analyzes news from hundreds of sources in real-time, identifying related stories and clustering them into unified events. It then generates concise summaries that capture the key facts, eliminating redundancy and giving you the full picture without reading dozens of articles. The system updates continuously throughout the day.</p>
-    </div>
-    
-    <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
-      <h3 class="text-xl font-semibold text-blue-400 mb-3">Where do you get your news sources?</h3>
-      <p class="text-gray-300 leading-relaxed">ShowTheNews aggregates from 150+ verified news sources including major wire services (AP, Reuters), national newspapers, international outlets, and specialized industry publications. We prioritize credible, established journalism to ensure accuracy and reliability in our automated summaries.</p>
-    </div>
-    
-    <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
-      <h3 class="text-xl font-semibold text-blue-400 mb-3">How much does ShowTheNews cost?</h3>
-      <p class="text-gray-300 leading-relaxed">ShowTheNews offers a free tier with access to our live news wall. <strong>ShowTheNews Pro</strong> is available for <strong>$4.99/month</strong> and includes early access to breaking news, deeper analysis, custom topic alerts, and ad-free browsing. B2B ambient display licenses are available for offices and coworking spaces.</p>
-    </div>
-  </div>
+  <!-- Hotspot zones -->
+  <div class="hotspot-container" id="hotspot-container" aria-label="Clickable news regions"></div>
 </section>
 
-<!-- Feedback Widget -->
-<style>.fb-btn{position:fixed;bottom:15px;right:15px;background:rgba(0,0,0,0.05);color:#6b7280;padding:8px 14px;border-radius:20px;cursor:pointer;font-size:12px;z-index:9999;border:1px solid rgba(0,0,0,0.1);transition:all 0.2s;opacity:0.4}.fb-btn:hover{opacity:1;background:rgba(0,0,0,0.08);transform:translateY(-1px)}.fb-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:10000;align-items:center;justify-content:center}.fb-modal.active{display:flex}.fb-content{background:#fff;padding:30px;border-radius:12px;max-width:500px;width:90%}.fb-content h3{margin:0 0 20px;color:#1f2937}.fb-content textarea,.fb-content input{width:100%;padding:12px;margin-bottom:15px;border:1px solid #d1d5db;border-radius:6px;font-size:14px}.fb-content textarea{min-height:120px}.fb-btns{display:flex;gap:10px;justify-content:flex-end}.fb-btns button{padding:10px 20px;border-radius:6px;border:none;cursor:pointer;font-weight:600}.fb-submit{background:#3b82f6;color:#fff}.fb-cancel{background:#e5e7eb;color:#374151}.fb-ok{color:#10b981;margin-top:10px;display:none}</style>
-<button class="fb-btn" onclick="openFB()">💬 Feedback</button>
-<div class="fb-modal" id="fbModal"><div class="fb-content"><h3>Send Feedback</h3><input id="fbEmail" placeholder="Your email (optional)"><textarea id="fbMsg" placeholder="Share your thoughts, report a bug, or request a feature..."></textarea><div class="fb-btns"><button class="fb-cancel" onclick="closeFB()">Cancel</button><button class="fb-submit" onclick="sendFB()">Submit</button></div><div class="fb-ok" id="fbOk">✅ Thank you! Your feedback has been sent.</div></div></div>
-<script>function openFB(){document.getElementById('fbModal').classList.add('active')}function closeFB(){document.getElementById('fbModal').classList.remove('active');document.getElementById('fbMsg').value='';document.getElementById('fbEmail').value='';document.getElementById('fbOk').style.display='none'}function sendFB(){const msg=document.getElementById('fbMsg').value;if(!msg.trim()){alert('Please enter a message');return}console.log('Feedback:',{site:location.hostname,msg});document.getElementById('fbOk').style.display='block';setTimeout(closeFB,2000)}document.getElementById('fbModal').onclick=function(e){if(e.target===this)closeFB()}</script>
+<!-- ── Story panel ── -->
+<div class="story-panel" id="story-panel" role="region" aria-label="Story details">
+  <div class="story-panel-inner">
+    <div>
+      <div class="panel-indicators" id="panel-dots"></div>
+      <div class="story-headline" id="panel-headline">Loading…</div>
+      <div class="story-summary" id="panel-summary"></div>
+      <div class="story-meta">
+        <div class="story-source" id="panel-source"></div>
+        <a href="#" target="_blank" rel="noopener" class="read-link" id="panel-link">
+          Read full article →
+        </a>
+      </div>
+    </div>
+    <button class="panel-close" id="panel-close" aria-label="Close panel">✕</button>
+  </div>
+</div>
+
+<!-- ── Archive row ── -->
+<div class="archive-row" role="tablist" aria-label="Archive period">
+  <span class="archive-label">View:</span>
+  <button class="archive-btn active" data-period="daily" role="tab">📅 Today</button>
+  <button class="archive-btn" data-period="monthly" role="tab">🗓️ This Month</button>
+  <button class="archive-btn" data-period="yearly" role="tab">📆 This Year</button>
+</div>
+
+<!-- ── Live news grid (fallback + always-visible) ── -->
+<div class="live-grid-section" id="live-grid-section">
+  <div class="section-title">Top Stories</div>
+  <div class="events-grid" id="events-grid"></div>
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>Powered by <strong>ShowTheNews</strong> — Free, always. &nbsp;·&nbsp;
+     <a href="/rss.xml">RSS</a> &nbsp;·&nbsp;
+     <a href="/analytics.html">Analytics</a> &nbsp;·&nbsp;
+     <a href="/landing.html">About</a>
+  </p>
+</footer>
+
+<script>
+  // ── State ──────────────────────────────────────────────────────────────────
+  const state = {
+    region: 'global',
+    period: 'daily',
+    meta: null,
+    events: [],
+    activeStory: null,
+    imageReady: false,
+  };
+
+  // ── DOM refs ───────────────────────────────────────────────────────────────
+  const $img = document.getElementById('editorial-image');
+  const $loadingState = document.getElementById('loading-state');
+  const $hotspotContainer = document.getElementById('hotspot-container');
+  const $panel = document.getElementById('story-panel');
+  const $panelHeadline = document.getElementById('panel-headline');
+  const $panelSummary = document.getElementById('panel-summary');
+  const $panelSource = document.getElementById('panel-source');
+  const $panelLink = document.getElementById('panel-link');
+  const $panelClose = document.getElementById('panel-close');
+  const $panelDots = document.getElementById('panel-dots');
+  const $lastUpdate = document.getElementById('last-update');
+  const $currentDate = document.getElementById('current-date');
+  const $storyCount = document.getElementById('story-count');
+  const $liveGrid = document.getElementById('live-grid-section');
+  const $eventsGrid = document.getElementById('events-grid');
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  function init() {
+    const today = new Date();
+    $currentDate.textContent = today.toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+
+    // Event listeners
+    document.querySelectorAll('.region-btn').forEach(btn => {
+      btn.addEventListener('click', () => selectRegion(btn.dataset.region));
+    });
+    document.querySelectorAll('.archive-btn').forEach(btn => {
+      btn.addEventListener('click', () => selectPeriod(btn.dataset.period));
+    });
+    $panelClose.addEventListener('click', closePanel);
+
+    loadRegion('global', 'daily');
+    fetchEvents('global');
+  }
+
+  // ── Region / Period selection ──────────────────────────────────────────────
+  function selectRegion(region) {
+    if (state.region === region) return;
+    state.region = region;
+    document.querySelectorAll('.region-btn').forEach(b => b.classList.toggle('active', b.dataset.region === region));
+    closePanel();
+    loadRegion(region, state.period);
+    fetchEvents(region);
+  }
+
+  function selectPeriod(period) {
+    if (state.period === period) return;
+    state.period = period;
+    document.querySelectorAll('.archive-btn').forEach(b => b.classList.toggle('active', b.dataset.period === period));
+    closePanel();
+    loadRegion(state.region, period);
+  }
+
+  // ── Load image for region + period ────────────────────────────────────────
+  async function loadRegion(region, period) {
+    showLoading();
+
+    try {
+      let url;
+      if (period === 'daily') {
+        url = `/api/image/daily?region=${region}`;
+      } else {
+        // For monthly/yearly, fetch archive list and use the latest
+        const archiveResp = await fetch(`/api/image/archive?region=${region}&type=${period}`);
+        const archiveData = await archiveResp.json();
+        if (archiveData.images && archiveData.images.length > 0) {
+          const meta = archiveData.images[0];
+          renderImage(meta);
+          return;
+        }
+        // If no archive, try generating (for monthly/yearly this might fail)
+        showFallback('No archive image available for this period yet.');
+        return;
+      }
+
+      const resp = await fetch(url);
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.error || `HTTP ${resp.status}`);
+      }
+      const meta = await resp.json();
+      renderImage(meta);
+    } catch (err) {
+      console.error('Error loading image:', err);
+      showFallback(err.message);
+    }
+  }
+
+  // ── Render image + hotspots ────────────────────────────────────────────────
+  function renderImage(meta) {
+    state.meta = meta;
+
+    if (meta.error) {
+      showFallback(meta.error);
+      return;
+    }
+
+    $img.classList.remove('loaded');
+    $img.classList.add('loading');
+    $img.src = '';
+
+    $img.onload = () => {
+      $loadingState.style.display = 'none';
+      $img.classList.remove('loading');
+      $img.classList.add('loaded');
+      $img.style.display = 'block';
+      state.imageReady = true;
+    };
+
+    $img.onerror = () => {
+      showFallback('Image could not be loaded');
+    };
+
+    $img.src = meta.imageUrl;
+
+    // Build hotspots
+    renderHotspots(meta);
+
+    // Update last update time
+    if (meta.generatedAt) {
+      const d = new Date(meta.generatedAt);
+      $lastUpdate.textContent = 'Updated ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+  }
+
+  function renderHotspots(meta) {
+    $hotspotContainer.innerHTML = '';
+    if (!meta.hotspots || !meta.stories) return;
+
+    meta.hotspots.forEach((hs, i) => {
+      const story = meta.stories[hs.storyIndex] || meta.stories[i];
+      if (!story) return;
+
+      const div = document.createElement('div');
+      div.className = 'hotspot';
+      div.style.left = `${hs.x}%`;
+      div.style.width = `${hs.width}%`;
+      div.style.top = `${hs.y || 0}%`;
+      div.style.height = `${hs.height || 100}%`;
+      div.setAttribute('role', 'button');
+      div.setAttribute('tabindex', '0');
+      div.setAttribute('aria-label', story.title);
+
+      // Panel number badge
+      const num = document.createElement('div');
+      num.className = 'hotspot-num';
+      num.textContent = i + 1;
+      div.appendChild(num);
+
+      // Headline label on hover
+      const label = document.createElement('div');
+      label.className = 'hotspot-label';
+      label.textContent = story.title;
+      div.appendChild(label);
+
+      div.addEventListener('click', () => openStory(i, meta));
+      div.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openStory(i, meta); });
+
+      $hotspotContainer.appendChild(div);
+    });
+  }
+
+  // ── Story panel ────────────────────────────────────────────────────────────
+  function openStory(index, meta) {
+    const story = meta.stories[index];
+    if (!story) return;
+
+    state.activeStory = index;
+
+    $panelHeadline.textContent = story.title;
+    $panelSummary.textContent = story.summary || 'No summary available.';
+    $panelSource.textContent = story.source || 'Unknown source';
+
+    const link = story.url || '#';
+    $panelLink.href = link;
+    $panelLink.style.display = link === '#' ? 'none' : 'inline-flex';
+
+    // Panel dots
+    $panelDots.innerHTML = '';
+    meta.stories.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'panel-dot' + (i === index ? ' active' : '');
+      dot.addEventListener('click', () => openStory(i, meta));
+      $panelDots.appendChild(dot);
+    });
+
+    // Highlight active hotspot
+    document.querySelectorAll('.hotspot').forEach((h, i) => {
+      h.classList.toggle('active', i === index);
+    });
+
+    $panel.classList.add('open');
+    $panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Track click
+    fetch('/api/track-click', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ eventTitle: story.title })
+    }).catch(() => {});
+  }
+
+  function closePanel() {
+    $panel.classList.remove('open');
+    state.activeStory = null;
+    document.querySelectorAll('.hotspot').forEach(h => h.classList.remove('active'));
+  }
+
+  // ── Loading / fallback states ──────────────────────────────────────────────
+  function showLoading() {
+    $loadingState.style.display = 'flex';
+    $img.style.display = 'none';
+    $img.classList.remove('loaded');
+    $hotspotContainer.innerHTML = '';
+    state.imageReady = false;
+  }
+
+  function showFallback(message) {
+    $loadingState.style.display = 'none';
+    $img.style.display = 'none';
+
+    // Show a nice placeholder
+    const section = document.getElementById('image-section');
+    let errorEl = section.querySelector('.error-notice');
+    if (!errorEl) {
+      errorEl = document.createElement('div');
+      errorEl.className = 'error-notice';
+      section.appendChild(errorEl);
+    }
+    errorEl.textContent = message || 'Image unavailable — showing live news below';
+
+    // Show a placeholder gradient
+    section.style.background = 'linear-gradient(135deg, #0d0d1a 0%, #111128 50%, #0a0a0f 100%)';
+
+    // Show live news grid
+    $liveGrid.classList.add('visible');
+  }
+
+  // ── Live news events ───────────────────────────────────────────────────────
+  async function fetchEvents(region) {
+    try {
+      const resp = await fetch(`/api/events?region=${region}&limit=12`);
+      const data = await resp.json();
+      state.events = data.events || [];
+
+      $storyCount.textContent = `${state.events.length} stories`;
+
+      if (state.events.length > 0) {
+        $lastUpdate.textContent = 'Updated ' + new Date(data.lastUpdate || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+
+      renderEvents(state.events);
+    } catch (err) {
+      console.error('Error fetching events:', err);
+    }
+  }
+
+  function renderEvents(events) {
+    $eventsGrid.innerHTML = '';
+    if (!events.length) {
+      $eventsGrid.innerHTML = '<p style="color:var(--muted);font-size:0.85rem">No events available.</p>';
+      return;
+    }
+
+    events.forEach(event => {
+      const card = document.createElement('div');
+      card.className = 'event-card';
+
+      const cat = event.category || 'world';
+      const catEmoji = { world: '🌍', tech: '💻', finance: '📈', sports: '⚽' }[cat] || '📰';
+      const sourceNames = (event.sources || []).slice(0, 3).map(s => s.name).join(', ');
+
+      card.innerHTML = `
+        <div class="event-category ${cat}">${catEmoji} ${cat}</div>
+        <span class="score-badge">✦ ${event.score || 1}</span>
+        <div class="event-title">${escapeHtml(event.title)}</div>
+        <div class="event-digest">${escapeHtml(event.digest || '')}</div>
+        <div class="event-sources">${escapeHtml(sourceNames)}</div>
+      `;
+
+      // Click to open first source URL
+      card.addEventListener('click', () => {
+        const url = event.url || (event.sources && event.sources[0]?.url);
+        if (url) {
+          fetch('/api/track-click', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ eventTitle: event.title })
+          }).catch(() => {});
+          window.open(url, '_blank', 'noopener');
+        }
+      });
+
+      $eventsGrid.appendChild(card);
+    });
+
+    // Always show the grid as a supplementary section below
+    $liveGrid.classList.add('visible');
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  // ── Start ─────────────────────────────────────────────────────────────────
+  init();
+</script>
 </body>
 </html>
