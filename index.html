@@ -280,6 +280,47 @@
       </div>
     </div>
 
+    <!-- Category Filter Tabs -->
+    <div class="mb-6" id="categoryTabs" style="display: none;">
+      <div class="flex gap-2 flex-wrap">
+        <button onclick="filterCategory('all')" data-cat="all" class="cat-tab active-tab px-4 py-2 rounded-full text-sm font-semibold border transition-all">
+          🌐 All
+        </button>
+        <button onclick="filterCategory('world')" data-cat="world" class="cat-tab px-4 py-2 rounded-full text-sm font-semibold border transition-all">
+          🗞️ World
+        </button>
+        <button onclick="filterCategory('tech')" data-cat="tech" class="cat-tab px-4 py-2 rounded-full text-sm font-semibold border transition-all">
+          💻 Tech
+        </button>
+        <button onclick="filterCategory('finance')" data-cat="finance" class="cat-tab px-4 py-2 rounded-full text-sm font-semibold border transition-all">
+          📈 Finance
+        </button>
+        <button onclick="filterCategory('sports')" data-cat="sports" class="cat-tab px-4 py-2 rounded-full text-sm font-semibold border transition-all">
+          🏆 Sports
+        </button>
+      </div>
+    </div>
+
+    <style>
+      .cat-tab {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.1);
+        color: #9ca3af;
+      }
+      .cat-tab:hover {
+        background: rgba(96,165,250,0.1);
+        border-color: rgba(96,165,250,0.4);
+        color: #60a5fa;
+      }
+      .cat-tab.active-tab {
+        background: rgba(96,165,250,0.2);
+        border-color: rgba(96,165,250,0.6);
+        color: #93c5fd;
+      }
+      .news-card { transition: all 0.3s ease; }
+      .news-card.hidden-card { display: none !important; }
+    </style>
+
     <!-- Main Content -->
     <div id="mainContent">
       <div class="loading-state">
@@ -442,6 +483,37 @@
         'Updated ' + new Date(dailyImageData.generatedAt).toLocaleTimeString();
     }
 
+    let allEvents = [];
+    let activeCategory = 'all';
+
+    const categoryEmoji = { world: '🗞️', tech: '💻', finance: '📈', sports: '🏆' };
+    const categoryColors = {
+      world:   { bg: 'bg-blue-500/10',   text: 'text-blue-400',   border: 'border-blue-500/20' },
+      tech:    { bg: 'bg-purple-500/10', text: 'text-purple-400', border: 'border-purple-500/20' },
+      finance: { bg: 'bg-green-500/10',  text: 'text-green-400',  border: 'border-green-500/20' },
+      sports:  { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/20' },
+    };
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+
+      // Update tab styles
+      document.querySelectorAll('.cat-tab').forEach(btn => {
+        btn.classList.toggle('active-tab', btn.dataset.cat === cat);
+      });
+
+      // Show/hide cards
+      document.querySelectorAll('.news-card').forEach(card => {
+        const match = cat === 'all' || card.dataset.category === cat;
+        card.classList.toggle('hidden-card', !match);
+      });
+
+      // Show empty state if nothing visible
+      const visible = document.querySelectorAll('.news-card:not(.hidden-card)').length;
+      const empty = document.getElementById('emptyCategory');
+      if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+    }
+
     async function showFallback() {
       const mainContent = document.getElementById('mainContent');
       
@@ -449,21 +521,25 @@
         // Fetch live news events
         const response = await fetch('./api/news');
         const data = await response.json();
+        allEvents = data.events || [];
         
-        // Show live news grid instead of placeholder
+        // Show live news grid
         const html = `
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 fade-in">
-            ${data.events.slice(0, 12).map(event => `
-              <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-5 hover:border-blue-500 hover:bg-gray-900/70 transition-all cursor-pointer group"
-                   onclick="trackClick('${event.title.replace(/'/g, "\\'")}'); window.open('${event.sources[0].url}', '_blank')">
-                ${event.image ? `
-                  <div class="mb-3 rounded-lg overflow-hidden">
-                    <img src="${event.image}" alt="${event.title}" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300">
-                  </div>
-                ` : ''}
-                <div class="flex items-center gap-2 mb-2">
-                  ${event.priority === 'high' ? '<span class="text-xs text-red-400 font-semibold">● BREAKING</span>' : ''}
-                  <span class="text-xs text-gray-500">${event.sourceCount} source${event.sourceCount > 1 ? 's' : ''}</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 fade-in" id="newsGrid">
+            ${allEvents.map(event => {
+              const cat = event.category || 'world';
+              const cols = categoryColors[cat] || categoryColors.world;
+              const sourceCount = event.sources ? event.sources.length : 1;
+              return `
+              <div class="news-card bg-gray-900/50 border border-gray-800 rounded-lg p-5 hover:border-blue-500 hover:bg-gray-900/70 transition-all cursor-pointer group"
+                   data-category="${cat}"
+                   onclick="trackClick('${event.title.replace(/'/g, "\\'").replace(/"/g, '&quot;')}'); window.open('${(event.sources && event.sources[0]) ? event.sources[0].url : '#'}', '_blank')">
+                <div class="flex items-center gap-2 mb-2 flex-wrap">
+                  <span class="text-xs px-2 py-0.5 rounded-full font-semibold ${cols.bg} ${cols.text} border ${cols.border}">
+                    ${categoryEmoji[cat] || ''} ${cat.charAt(0).toUpperCase() + cat.slice(1)}
+                  </span>
+                  <span class="text-xs text-gray-500">${sourceCount} source${sourceCount !== 1 ? 's' : ''}</span>
+                  ${event.score >= 3 ? '<span class="text-xs text-red-400 font-semibold">● TRENDING</span>' : ''}
                 </div>
                 <h3 class="text-base font-semibold mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
                   ${event.title}
@@ -472,25 +548,36 @@
                   ${event.digest}
                 </p>
                 <div class="flex flex-wrap gap-1.5">
-                  ${event.sources.slice(0, 3).map(s => `
+                  ${(event.sources || []).slice(0, 3).map(s => `
                     <span class="text-xs px-2 py-1 bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
                       ${s.name}
                     </span>
                   `).join('')}
-                  ${event.sourceCount > 3 ? `<span class="text-xs px-2 py-1 text-gray-500">+${event.sourceCount - 3} more</span>` : ''}
+                  ${sourceCount > 3 ? `<span class="text-xs px-2 py-1 text-gray-500">+${sourceCount - 3} more</span>` : ''}
                 </div>
-              </div>
-            `).join('')}
+              </div>`;
+            }).join('')}
+          </div>
+          <div id="emptyCategory" class="text-center py-12 text-gray-500" style="display:none;">
+            <div class="text-4xl mb-3">🔍</div>
+            <div class="text-lg">No stories in this category right now.</div>
+            <div class="text-sm mt-1">Check back soon or try a different tab.</div>
           </div>
         `;
         
         mainContent.innerHTML = html;
         
+        // Show category tabs
+        document.getElementById('categoryTabs').style.display = 'block';
+        
         // Update header stats
-        document.getElementById('eventCount').textContent = data.events.length;
+        document.getElementById('eventCount').textContent = allEvents.length;
         document.getElementById('lastUpdate').textContent = 
           'Updated ' + new Date(data.lastUpdate).toLocaleTimeString();
         document.getElementById('instructions').style.display = 'block';
+        
+        // Reapply active filter if needed
+        if (activeCategory !== 'all') filterCategory(activeCategory);
         
       } catch (err) {
         console.error('Error loading news:', err);

@@ -15,23 +15,45 @@ app.use(express.static('.'));
 
 // News sources - curated for quality, diversity, and copyright compliance
 const sources = [
-  { name: 'BBC', url: 'http://feeds.bbci.co.uk/news/rss.xml', region: 'UK' },
-  { name: 'NPR', url: 'https://feeds.npr.org/1001/rss.xml', region: 'US' },
-  { name: 'The Guardian', url: 'https://www.theguardian.com/world/rss', region: 'UK' },
-  { name: 'Al Jazeera', url: 'https://www.aljazeera.com/xml/rss/all.xml', region: 'Qatar' },
-  { name: 'CNN', url: 'http://rss.cnn.com/rss/cnn_topstories.rss', region: 'US' },
-  { name: 'ABC News', url: 'https://abcnews.go.com/abcnews/topstories', region: 'US' },
-  { name: 'Washington Post', url: 'https://feeds.washingtonpost.com/rss/world', region: 'US' },
-  { name: 'The Hill', url: 'https://thehill.com/feed/', region: 'US' },
-  { name: 'CBS News', url: 'https://www.cbsnews.com/latest/rss/main', region: 'US' },
+  // World/General news
+  { name: 'BBC', url: 'http://feeds.bbci.co.uk/news/rss.xml', region: 'UK', category: 'world' },
+  { name: 'NPR', url: 'https://feeds.npr.org/1001/rss.xml', region: 'US', category: 'world' },
+  { name: 'The Guardian', url: 'https://www.theguardian.com/world/rss', region: 'UK', category: 'world' },
+  { name: 'Al Jazeera', url: 'https://www.aljazeera.com/xml/rss/all.xml', region: 'Qatar', category: 'world' },
+  { name: 'CNN', url: 'http://rss.cnn.com/rss/cnn_topstories.rss', region: 'US', category: 'world' },
+  { name: 'ABC News', url: 'https://abcnews.go.com/abcnews/topstories', region: 'US', category: 'world' },
+  { name: 'Washington Post', url: 'https://feeds.washingtonpost.com/rss/world', region: 'US', category: 'world' },
+  { name: 'The Hill', url: 'https://thehill.com/feed/', region: 'US', category: 'world' },
+  { name: 'CBS News', url: 'https://www.cbsnews.com/latest/rss/main', region: 'US', category: 'world' },
   // { name: 'AP News', url: 'https://apnews.com/index.rss', region: 'US' }, // Disabled: requires authentication (401)
   // { name: 'Reuters', url: 'https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best', region: 'International' }, // Disabled: 404
-  { name: 'The Times of India', url: 'https://timesofindia.indiatimes.com/rssfeedstopstories.cms', region: 'India' },
-  { name: 'The Independent', url: 'https://www.independent.co.uk/news/world/rss', region: 'UK' },
-  { name: 'France24', url: 'https://www.france24.com/en/rss', region: 'France' },
-  { name: 'DW (Germany)', url: 'https://rss.dw.com/xml/rss-en-all', region: 'Germany' },
-  { name: 'Sky News', url: 'https://feeds.skynews.com/feeds/rss/world.xml', region: 'UK' },
-  { name: 'PBS NewsHour', url: 'https://www.pbs.org/newshour/feeds/rss/headlines', region: 'US' }
+  { name: 'The Times of India', url: 'https://timesofindia.indiatimes.com/rssfeedstopstories.cms', region: 'India', category: 'world' },
+  { name: 'The Independent', url: 'https://www.independent.co.uk/news/world/rss', region: 'UK', category: 'world' },
+  { name: 'France24', url: 'https://www.france24.com/en/rss', region: 'France', category: 'world' },
+  { name: 'DW (Germany)', url: 'https://rss.dw.com/xml/rss-en-all', region: 'Germany', category: 'world' },
+  { name: 'Sky News', url: 'https://feeds.skynews.com/feeds/rss/world.xml', region: 'UK', category: 'world' },
+  { name: 'PBS NewsHour', url: 'https://www.pbs.org/newshour/feeds/rss/headlines', region: 'US', category: 'world' },
+
+  // Tech news
+  { name: 'TechCrunch', url: 'https://techcrunch.com/feed/', region: 'US', category: 'tech' },
+  { name: 'The Verge', url: 'https://www.theverge.com/rss/index.xml', region: 'US', category: 'tech' },
+  { name: 'Ars Technica', url: 'https://feeds.arstechnica.com/arstechnica/index', region: 'US', category: 'tech' },
+  { name: 'Wired', url: 'https://www.wired.com/feed/rss', region: 'US', category: 'tech' },
+  { name: 'MIT Tech Review', url: 'https://www.technologyreview.com/feed/', region: 'US', category: 'tech' },
+
+  // Finance news
+  { name: 'MarketWatch', url: 'https://feeds.marketwatch.com/marketwatch/topstories/', region: 'US', category: 'finance' },
+  { name: 'CNBC Top News', url: 'https://www.cnbc.com/id/100003114/device/rss/rss.html', region: 'US', category: 'finance' },
+  { name: 'Financial Times', url: 'https://www.ft.com/rss/home/uk', region: 'UK', category: 'finance' },
+  { name: 'Bloomberg Markets', url: 'https://feeds.bloomberg.com/markets/news.rss', region: 'US', category: 'finance' },
+  { name: 'Investing.com', url: 'https://www.investing.com/rss/news.rss', region: 'US', category: 'finance' },
+
+  // Sports news
+  { name: 'ESPN', url: 'https://www.espn.com/espn/rss/news', region: 'US', category: 'sports' },
+  { name: 'BBC Sport', url: 'https://feeds.bbci.co.uk/sport/rss.xml', region: 'UK', category: 'sports' },
+  { name: 'CBS Sports', url: 'https://www.cbssports.com/rss/headlines/', region: 'US', category: 'sports' },
+  { name: 'Sports Illustrated', url: 'https://www.si.com/rss/si_topstories.rss', region: 'US', category: 'sports' },
+  { name: 'The Athletic', url: 'https://theathletic.com/rss/news', region: 'US', category: 'sports' },
 ];
 
 let cachedNews = { stories: [], events: [], sources: [], lastUpdate: null };
@@ -41,6 +63,39 @@ let analytics = {
   eventClicks: {},
   lastReset: new Date().toISOString()
 };
+
+// Category keyword mapping for auto-classification
+const categoryKeywords = {
+  tech: ['ai', 'artificial', 'intelligence', 'technology', 'tech', 'software', 'hardware', 'apple', 'google', 'microsoft', 'meta', 'amazon', 'tesla', 'startup', 'silicon', 'cyber', 'hack', 'chip', 'semiconductor', 'robot', 'automation', 'cloud', 'data', 'privacy', 'algorithm', 'machine', 'learning', 'openai', 'chatgpt', 'elon', 'spacex', 'internet', 'smartphone', 'bitcoin', 'crypto', 'blockchain', 'nvidia', 'samsung', 'social', 'twitter', 'facebook', 'instagram', 'tiktok'],
+  finance: ['market', 'stock', 'economy', 'economic', 'inflation', 'interest', 'rate', 'bank', 'banking', 'federal', 'reserve', 'wall', 'street', 'finance', 'financial', 'trade', 'trading', 'investment', 'investor', 'gdp', 'recession', 'debt', 'deficit', 'budget', 'tax', 'tariff', 'dollar', 'euro', 'currency', 'bond', 'commodity', 'oil', 'price', 'earnings', 'profit', 'revenue', 'nasdaq', 'dow', 'fund', 'mortgage', 'housing', 'real', 'estate', 'wealth', 'billion', 'trillion'],
+  sports: ['sport', 'game', 'match', 'championship', 'tournament', 'league', 'team', 'player', 'coach', 'nfl', 'nba', 'mlb', 'nhl', 'soccer', 'football', 'basketball', 'baseball', 'tennis', 'golf', 'olympic', 'world', 'cup', 'win', 'loss', 'score', 'season', 'playoff', 'final', 'athlete', 'injury', 'transfer', 'contract', 'trade', 'draft', 'stadium', 'fan', 'superbowl', 'super', 'bowl', 'series', 'championship', 'fifa', 'ufc', 'boxing', 'swimming', 'racing', 'formula', 'nascar']
+};
+
+// Detect category from source and text content
+function detectCategory(source, title, snippet) {
+  // First check source category
+  if (source.category && source.category !== 'world') {
+    return source.category;
+  }
+  
+  // Then do keyword matching on title + snippet
+  const text = (title + ' ' + (snippet || '')).toLowerCase();
+  const words = text.replace(/[^\w\s]/g, ' ').split(/\s+/);
+  
+  const scores = { tech: 0, finance: 0, sports: 0 };
+  for (const word of words) {
+    for (const [cat, keywords] of Object.entries(categoryKeywords)) {
+      if (keywords.includes(word)) scores[cat]++;
+    }
+  }
+  
+  const maxScore = Math.max(...Object.values(scores));
+  if (maxScore >= 2) {
+    return Object.keys(scores).find(k => scores[k] === maxScore);
+  }
+  
+  return 'world';
+}
 
 // Extract keywords from text
 function extractKeywords(text) {
@@ -104,14 +159,26 @@ function clusterStories(stories) {
       const scoreB = b.score + (new Date(b.stories[0].pubDate) / 1000000000);
       return scoreB - scoreA;
     })
-    .slice(0, 20)
-    .map(event => ({
-      title: event.stories[0].title,
-      digest: event.stories[0].contentSnippet?.slice(0, 150) || '',
-      sources: event.stories.map(s => ({ name: s.source, url: s.link })),
-      pubDate: event.stories[0].pubDate,
-      score: event.score
-    }));
+    .slice(0, 40)
+    .map(event => {
+      const lead = event.stories[0];
+      // Determine category from the cluster's stories
+      const categoryCounts = {};
+      event.stories.forEach(s => {
+        const cat = detectCategory(s.sourceObj || { category: 'world' }, s.title, s.contentSnippet);
+        categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+      });
+      const category = Object.keys(categoryCounts).reduce((a, b) => categoryCounts[a] > categoryCounts[b] ? a : b, 'world');
+      
+      return {
+        title: lead.title,
+        digest: lead.contentSnippet?.slice(0, 150) || '',
+        sources: event.stories.map(s => ({ name: s.source, url: s.link })),
+        pubDate: lead.pubDate,
+        score: event.score,
+        category
+      };
+    });
 }
 
 // Fetch all news
@@ -127,7 +194,8 @@ async function fetchNews() {
         link: item.link,
         pubDate: item.pubDate,
         contentSnippet: item.contentSnippet,
-        source: source.name
+        source: source.name,
+        sourceObj: source
       }));
       allStories.push(...stories);
       console.log(`✓ ${source.name}: ${stories.length} stories`);
